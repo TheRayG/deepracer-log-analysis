@@ -3,7 +3,7 @@
 
 <br>
 
-This notebook, which is compatible with logs from the AWS DeepRacer Console after Aug 2020, is a redo of Log Analysis solutions provided in the [AWS DeepRacer Workshops repository](https://github.com/aws-samples/aws-deepracer-workshops). The log analysis here parses log data from AWS RoboMaker (SIM_TRACE_LOG data) and Amazon SageMaker (policy training data), and introduces some analyses that are not present in the AWS samples.
+This Notebook, which is compatible with logs from the AWS DeepRacer Console after Aug 2020, is a redo of Log Analysis solutions provided in the [AWS DeepRacer Workshops repository](https://github.com/aws-samples/aws-deepracer-workshops). The log analysis here parses log data from AWS RoboMaker (SIM_TRACE_LOG data) and Amazon SageMaker (policy training data), and introduces some analyses that are not present in the AWS samples.
 
 With the new AWS DeepRacer console update in Aug 2020, these logs are no longer streamed to CloudWatch Logs during training. Instead, they are downloadable from the model page in the AWS DeepRacer console, after training has terminated.
 
@@ -12,6 +12,15 @@ The code here:
 - should be backwards compatible with DeepRacer logs previously downloaded from CloudWatch Logs too.
 - is maintained such that it can be run directly from a Amazon SageMaker Notebook instance, as long as the relative paths of the RoboMaker and SageMaker log files are specified correctly.
 - does not require access to any AWS Services (hence no awscli or boto required) when analysing the log data files.
+
+## Test-drive this Notebook!
+
+To take this Notebook on a quick test drive, just do the following:
+- Clone this repo
+- Spin the .ipynb file up on Jupyter Notebook (works in an Amazon SageMaker Notebook instance too)
+- Download your own model training log .tar.gz from the AWS DeepRacer console
+- Extract the RoboMaker and SageMaker log files (found in `logs/training/` in the .tar.gz) into the `logs` folder
+- Run all cells to test the log analysis on your logs!
 
 ## Credits
 
