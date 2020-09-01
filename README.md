@@ -17,9 +17,10 @@ The code here:
 
 To take this Notebook on a quick test drive, just do the following:
 - Clone this repo
+- Download your own model training log (.tar.gz file) from the AWS DeepRacer console
+- Extract the RoboMaker and SageMaker log files (found in `logs/training/` in the .tar.gz), into the `logs` folder
 - Spin the .ipynb file up on Jupyter Notebook (works in an Amazon SageMaker Notebook instance too)
-- Download your own model training log .tar.gz from the AWS DeepRacer console
-- Extract the RoboMaker and SageMaker log files (found in `logs/training/` in the .tar.gz) into the `logs` folder
+- Edit the path to your logs in the Notebook
 - Run all cells to test the log analysis on your logs!
 
 ## Credits
