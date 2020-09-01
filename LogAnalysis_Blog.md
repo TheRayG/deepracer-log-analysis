@@ -10,6 +10,9 @@ In May 2020, racers from around the world were given a unique opportunity to tes
 After a gruelling month of racing, I emerged as the Champion in the F1 ProAm Race, beating fellow racer JJ and the pro F1 drivers to the checkered flag! I attribute my win to having performed more experiments than my fellow competitors throughout that month of racing. Those experiments allowed me to continuously tweak and improve my model leading up to the final race at the end of the month. Behind those experiments, are ideas that arose from data-driven insights through Log Analysis.
 
 ## What is Log Analysis?
+Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models using log data generated from the AWS DeepRacer simulation and training environment. With short snippets of Python code, we can plot and visualise our model's training performance, through various graphs and heatmaps. I created various unique visualisations in my Log Analysis Notebook, and that ultimately helped me to create a model that was fast and stable enough to win the F1 ProAm Race.
+
+In this blog, I will share the code to some of those visualisations that I created. I will also show how we can make use of Amazon SageMaker to spin up a Notebook Instance to perform Log Analysis for our model training data.
 
 ## Amazon SageMaker Notebook Instances
 
