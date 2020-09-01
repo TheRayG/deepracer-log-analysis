@@ -1,6 +1,8 @@
 # A Data-driven Approach to Training & Tuning AWS DeepRacer Reinforcement Learning Models
+*How I used Log Analysis to drive data-driven experiments to win the F1 DeepRacer ProAm Race*
 
 ## What is AWS DeepRacer?
+AWS DeepRacer is the world’s first global autonomous racing league, driven by reinforcement learning. It is 
 
 ## Winning the F1 ProAm Event in May 2020
 
