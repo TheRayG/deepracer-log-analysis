@@ -15,9 +15,13 @@ Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models
 In this blog, I will share the code to some of those visualisations that I created. I will also show how we can make use of Amazon SageMaker to spin up a Notebook Instance to perform Log Analysis for our model training data.
 
 ## Amazon SageMaker Notebook Instances
+An Amazon SageMaker Notebook Instance is an ML compute instance running the Jupyter Notebook application. Amazon SageMaker manages creating the instance and its related resources, so we can focus on analysing our models training data without worrying about provisioning EC2 resources directly.
 
 ## Using Amazon SageMaker Notebook Instance for Log Analysis
+
 ### Downloading Logs from the AWS DeepRacer Console
+To prepare the data that we want to analyse, we first have to download our model training logs from the AWS DeepRacer Console.
+
 ### Extracting the Required Log Files
 ### Creating a Notebook Instance
 ### Uploading the Log Files for Analysis
