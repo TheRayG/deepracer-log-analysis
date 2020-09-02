@@ -27,7 +27,10 @@ An Amazon SageMaker Notebook Instance is an ML compute instance running the Jupy
 To prepare the data that we want to analyse, we first have to download our model training logs from the AWS DeepRacer Console.
 
 ### Extracting the Required Log Files
+
 ### Creating a Notebook Instance
+
+
 ### Uploading the Log Files for Analysis
 
 ## Visualising the Performance Envelope of the Model
