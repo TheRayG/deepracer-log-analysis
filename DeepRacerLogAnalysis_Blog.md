@@ -74,12 +74,15 @@ One common question asked by beginners of AWS DeepRacer is, "*If 2 models are tr
 
 <Pic of histogram/normal distribution>
 
-By plotting a histogram of lap times achieved by the model during training, we can work out statistically the average and best-case lap times we can expect from the model. I've noticed that the lap times of the model during training resembles a normal distribution - so I use the -2 and -3 Std Dev markers to show the potential best-case lap times for the model, with 2.275% and 0.135% chance of occurring respectively. This helps me to gauge if I should continue cloning and tweaking the model, or abandon it and start afresh with a different approach.
-
+By plotting a histogram of lap times achieved by the model during training, we can show the relative probability of the model achieving various lap times. We can also work out statistically the average and best-case lap times we can expect from the model. I've noticed that the lap times of the model during training resembles a normal distribution - so I use the -2 and -3 Std Dev markers to show the potential best-case lap times for the model, albeit with just 2.275% (-2SD) and 0.135% (-3SD) chance of occurring respectively. This helps me to gauge if I should continue cloning and tweaking the model, or abandon it and start afresh with a different approach if the "performance curve" does not look good enough.
 
 ## Identifying Potential Model Checkpoints for Race Submission
+When training many different models for a race, it is also common for racers to ask, "*Which model would give me the highest chance of winning a Virtual Race?*" To answer that question, I plotted the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (more dots for a particular iteration).
+
+<Pic of scatter plot of elapsed time vs iteration>
 
 ## Identifying Convergence and Gauging Consistency
+
 
 ## Identifying Inefficiencies in Driving Behaviour
 
