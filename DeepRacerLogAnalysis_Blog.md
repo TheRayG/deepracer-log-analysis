@@ -31,6 +31,8 @@ To get started, I simply created a Notebook Instance from the Amazon SageMaker c
 
 I only need to fill in my instance name, and ensure that the correct instance type is selected. For DeepRacer Log Analysis, the smallest instance type (`ml.t2.medium`) is usually sufficient for my needs. I will also use the default storage volume size of `5 GB`.
 
+<Pic showing Create notebook instance screen>
+
 #### Cloning the Log Analysis Repo from the Notebook Instance
 It is extremely easy to clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, with Git integration, I can clone my own Log Analysis repository in seconds.
 
@@ -53,3 +55,4 @@ To prepare the data that we want to analyse, we first have to download our model
 
 ## Identifying Track Sections to Tweak Actions & Rewards
 
+## Cleaning Up
