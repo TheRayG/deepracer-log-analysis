@@ -16,7 +16,7 @@ Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models
 
 ![Log Analysis for the Spain F1 Track](/images/log_analysis_blog_visualisations.png)
 
-In this blog, I will share the code to some of those visualisations that I created. I will also show how we can make use of Amazon SageMaker to spin up a Notebook Instance to perform Log Analysis for our model training data.
+> In this blog, I will share about some of those visualisations that I created. I will also show how we can make use of Amazon SageMaker to spin up a Notebook Instance to perform Log Analysis for our model training data.
 
 ## Amazon SageMaker Notebook Instances
 An Amazon SageMaker Notebook Instance is an ML compute instance running the Jupyter Notebook application. Amazon SageMaker manages creating the instance and its related resources, so we can focus on analysing our models training data without worrying about provisioning EC2 resources directly.
@@ -33,19 +33,43 @@ I only need to fill in my instance name, and ensure that the correct instance ty
 
 <Pic showing Create notebook instance screen>
 
-#### Cloning the Log Analysis Repo from the Notebook Instance
-It is extremely easy to clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, with Git integration, I can clone my own Log Analysis repository in seconds.
+Once I have my Notebook Instance started up, I can fire up JupyterLab, the IDE for Jupyter Notebooks.
+
+<Pic showing JupyterLab button and Empty Notebook>
+
+#### Cloning the Log Analysis Repo from JupyterLab
+From the JupyterLab IDE, it is extremely easy to clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, with Git integration, I can clone my [Log Analysis repository](https://github.com/TheRayG/deepracer-log-analysis) in seconds.
 
 ![Cloning a Notebook Repo](/images/log_analysis_blog_cloninganotebookrepo.png)
 
 #### Downloading Logs from the AWS DeepRacer Console
-To prepare the data that we want to analyse, we first have to download our model training logs from the AWS DeepRacer Console.
+To prepare the data that we want to analyse, we will have to download our model training logs from the AWS DeepRacer Console. From the model page of the model that we intend to analyse, navigate to `Training > Resources > Download Logs` to download the training log files, packaged in the form of a .tar.gz file.
 
-#### Extracting the Required Log Files
+<Pic showing model download button>
 
-#### Uploading the Log Files for Analysis
+#### Extracting the Required Log Files for Analysis
+Extract the RoboMaker and SageMaker log files from the .tar.gz package (found in `logs/training/`), and then drag / upload the 2 log files into the `logs` folder in the local cloned directory.
+
+<Pic showing folder structure of the .tar.gz>
+<Pic showing JupyterLab folder of the local cloned repo>
+
+We're now ready to open up our Log Analysis Notebook to work its magic! Simply navigate into our local cloned directory, and double-click on the .ipynb file to open the Notebook up.
+
+<Pic of launching the Notebook>
+
+Once we have our Notebook opened, the first thing we'll need to do is to specify the filenames of the 2 log files that we had just uploaded into the `logs` folder of our local cloned directory.
+
+<Pic of the 2 files in local cloned directory>
+
+There are numerous markdown descriptions and comments in the Notebook to explain what each cell does. I'll highlight some of the visualisations from that Notebook and explain the thought process behind them below.
 
 ## Visualising the Performance Envelope of the Model
+One common question asked by beginners of AWS DeepRacer is, "*If 2 models are trained using the same Reward Function and Hyperparameters, why do they have different lap times when I evaluate them?*" I find that this visualisation is a great way to explain that:
+
+<Pic of histogram/normal distribution>
+
+By plotting a histogram of lap times achieved by the model during training, we can work out statistically the average and best-case lap times we can expect from the model. I've noticed that the lap times of the model during training resembles a normal distribution - so I use the -2 and -3 Std Dev markers to show the potential best-case lap times for the model, with 2.275% and 0.135% chance of occurring respectively. This helps me to gauge if I should continue cloning and tweaking the model, or abandon it and start afresh with a different approach.
+
 
 ## Identifying Potential Model Checkpoints for Race Submission
 
