@@ -16,7 +16,8 @@ Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models
 
 ![Log Analysis for the Spain F1 Track](/images/log_analysis_blog_visualisations.png)
 
-> <h2>In this blog, I will share about some of the visualisations that I created. I will also show how we can make use of Amazon SageMaker to spin up a Notebook Instance to perform Log Analysis for our model training data.</h2>
+<br>
+> <h2>*In this blog, I will share about some of the visualisations that I created. I will also show how we can make use of Amazon SageMaker to spin up a Notebook Instance to perform Log Analysis for our model training data.*</h2>
 <br>
 
 ## Amazon SageMaker Notebook Instances
