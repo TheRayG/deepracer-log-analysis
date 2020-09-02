@@ -24,15 +24,17 @@ An Amazon SageMaker Notebook Instance is an ML compute instance running the Jupy
 ## Using Amazon SageMaker Notebook Instance for Log Analysis
 One of the biggest benefits of using an Amazon SageMaker Notebook Instance to perform DeepRacer Log Analysis, is that Amazon SageMaker automatically installs Anaconda packages and libraries for common deep learning platforms on our behalf, including TensorFlow deep learning libraries. It also automatically attaches an EBS storage volume to our Notebook instance, which we can use as a persistent working area to perform Log Analysis and store our analysis artifacts.
 
-### Downloading Logs from the AWS DeepRacer Console
+#### Creating a Notebook Instance
+
+#### Cloning the Log Analysis Repo from the Notebook Instance
+It is extremely easy to clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, to clone
+
+#### Downloading Logs from the AWS DeepRacer Console
 To prepare the data that we want to analyse, we first have to download our model training logs from the AWS DeepRacer Console.
 
-### Extracting the Required Log Files
+#### Extracting the Required Log Files
 
-### Creating a Notebook Instance
-
-
-### Uploading the Log Files for Analysis
+#### Uploading the Log Files for Analysis
 
 ## Visualising the Performance Envelope of the Model
 
