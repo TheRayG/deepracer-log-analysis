@@ -14,7 +14,7 @@ After a gruelling month of racing, I emerged as the Champion in the F1 ProAm Rac
 ## What is Log Analysis?
 Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models using log data generated from the AWS DeepRacer simulation and training environment. With short snippets of Python code, we can plot and visualise our model's training performance, through various graphs and heatmaps. I created various unique visualisations in my Log Analysis Notebook, and that ultimately helped me to create a model that was fast and stable enough to win the F1 ProAm Race.
 
-![Log Analysis for the Spain F1 Trrack](/images/log_analysis_blog_visualisations.png)
+![Log Analysis for the Spain F1 Track](/images/log_analysis_blog_visualisations.png)
 
 In this blog, I will share the code to some of those visualisations that I created. I will also show how we can make use of Amazon SageMaker to spin up a Notebook Instance to perform Log Analysis for our model training data.
 
@@ -27,7 +27,9 @@ One of the biggest benefits of using an Amazon SageMaker Notebook Instance to pe
 #### Creating a Notebook Instance
 
 #### Cloning the Log Analysis Repo from the Notebook Instance
-It is extremely easy to clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, to clone
+It is extremely easy to clone a Git repository to make use of Log Analysis Notebooks shared by the community. With Git integration, I can clone my own Log Analysis repository in seconds.
+
+![Cloning a Notebook Repo](/images/log_analysis_blog_cloninganotebookrepo.png)
 
 #### Downloading Logs from the AWS DeepRacer Console
 To prepare the data that we want to analyse, we first have to download our model training logs from the AWS DeepRacer Console.
