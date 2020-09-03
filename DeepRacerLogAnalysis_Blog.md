@@ -162,7 +162,7 @@ When training many different models for a race, it is common for racers to ask:
 </h2>
 <br>
 
-To answer that question, I plot the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (dense cluster of dots for a particular iteration).
+To answer that question, I plot the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (dense cluster of dots for a particular iteration). From the above diagram, I would choose the model checkpoints from the 3 highlighted iterations for race submission.
 <br>
 <br>
 
@@ -171,7 +171,7 @@ To answer that question, I plot the top quartile (p25) lap times vs iterations f
 <br>
 
 ## Identifying Convergence and Gauging Consistency
-As racers gain experience with model training, they'll start paying to *Convergence* in their models. Simply put, convergence in the AWS DeepRacer context is when a model is performing close to its best (in terms of average lap progress), and further training may harm its performance or make it *Overfit*, such that it will only do well for that track in a very specific simulation environment, but not in other tracks or in a physical DeepRacer car. That begs the following questions:
+As racers gain experience with model training, they'll start paying attention to *Convergence* in their models. Simply put, convergence in the AWS DeepRacer context is when a model is performing close to its best (in terms of average lap progress), and further training may harm its performance or make it *Overfit*, such that it will only do well for that track in a very specific simulation environment, but not in other tracks or in a physical DeepRacer car. That begs the following questions:
 <h2>
 
 > "*How do I tell when the model has converged? How consistent is my model after it has converged?*"
@@ -179,13 +179,19 @@ As racers gain experience with model training, they'll start paying to *Converge
 </h2>
 <br>
 
-To aid myself in visualising convergence, I plotted the Entropy information from the SageMaker policy training logs, in addition to the usual plots for Rewards and Progress. The thinking behind this is, as rewards and progress increase, the entropy value should decrease. When rewards and progress plateau, the entropy loss should also flatten out. Hence I use entropy as an additional indicator of convergence.
+To aid in visualising convergence, I overlay the *Entropy* information from the SageMaker policy training logs over the usual plots for Rewards and Progress. The thinking behind this is, as rewards and progress increase, the entropy value should decrease. When rewards and progress plateau, the entropy loss should also flatten out. Hence I use entropy as an additional indicator for convergence.
 
-To gauge the consistency of my model, I also plot the percentage of lap completions per iteration during training. During training, once the model is capable of completing 100% of laps, the percentage of completed laps should creep up in subsequent iterations, until around the point of convergence, where the percentage value should plateau too.
+To gauge the consistency of my model, I also plot the percentage of lap completions per iteration during training. Once the model is capable of completing 100% of laps, the percentage of completed laps should creep up in subsequent iterations, until around the point of convergence, when the percentage value should plateau too.
+<br>
+<br>
 
-<Pic of reward entropy plot>
+![Scatter Plot of Lap Times per Iteration](/images/log_analysis_blog_entropyandcompletionratio.png)
+<br>
+<br>
 
-The model training process is probabilistic, as the reinforcement learning agent incorporates entropy to explore the environment. To smoothen out the effects of the probablistic model in my visualisation, I use a simple moving average over 3 iterations for each of my plotted metrics.
+The model training process is probabilistic because the reinforcement learning agent incorporates entropy to explore the environment. To smoothen out the effects of the probablistic model in my visualisation, I use a simple moving average over 3 iterations for each of my plotted metrics.
+<br>
+<br>
 
 ## Identifying Inefficiencies in Driving Behaviour
 Once racers have a competitive model, they'll start to wonder:
@@ -196,10 +202,21 @@ Once racers have a competitive model, they'll start to wonder:
 </h2>
 <br>
 
-In pursuit of answering these questions, I designed a visualisation that showed the average speed and steering angle of the car measured at every waypoint of the track. This allowed me to see visually how the model is negotiating the track, because from this plot, you can see the rate at which the model is speeding up / slowing down as it travels along the waypoints. You can also see how the model is adjusting its steering angle as it negotiates turns. What I love about this visualisation, is that it allows me to see clearly, at which point after a long straight is the model starting to "brake", before entering into a turn. It also highlights if a model is accelerating quickly upon exiting a turn.
+In pursuit of answering these questions, I designed a visualisation that shows the average speed and steering angle of the car measured at every waypoint along the track. This allows me to see visually how the model is negotiating the track, because from this plot you can see the rate at which the model is speeding up or slowing down as it travels through the waypoints.
+<br>
+<br>
 
-<Pic of track layout and waypoints>
-<Pic of horizontal speed / steering vs waypoints>
+![Spain F1 Track Waypoints](/images/log_analysis_blog_spainf1trackwaypoints.png)
+<br>
+<br>
+
+You can also see how the model is adjusting its steering angle as it negotiates turns. What I love about this visualisation, is that it allows me to see clearly at which point after a long straight is the model starting to "brake", before entering into a turn. It also helps me to visualise if a model is accelerating quickly enough upon exiting a turn.
+<br>
+<br>
+
+![Speed and Steering per Waypoint](/images/xlog_analysis_blog_speedsteeringperwaypoint.png)
+<br>
+<br>
 
 ## Identifying Track Sections to Tweak Actions & Rewards
 While Speed is the primary performance criteria in a Time Trial race, Stability is also important in an Object Avoidance or Head-to-head race. As there are time penalties for the car going off-track, it is very important to find the right balance between Speed and Stability. Even if the model is able to negotiate the track well, many of the top racers would also be asking these questions:
