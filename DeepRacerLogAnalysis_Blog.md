@@ -222,7 +222,7 @@ You can also see how the model is adjusting its steering angle as it negotiates 
 While Speed is the primary performance criteria in a Time Trial race, Stability is also important in an Object Avoidance or Head-to-head race. As time penalties for going off-track have an impact on race position, it is very important to find the right balance between Speed and Stability. Even if the model is able to negotiate the track well, top racers will also be asking these questions:
 <h2>
 
-> "*Is the car over- or under-steering at any of the turns? Which turn should I focus on optimising for in subsequent experiments?*"
+> "*Is the car over- or under-steering at any of the turns? Which turn should I focus on optimising in subsequent experiments?*"
 
 </h2>
 <br>
