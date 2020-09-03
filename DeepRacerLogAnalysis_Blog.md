@@ -44,7 +44,7 @@ If you are already familiar with opening Notebooks in a JupyterLab Notebook appl
 <br>
 
 ## Amazon SageMaker Notebook Instances
-An Amazon SageMaker Notebook instance is a managed ML compute instance running the Jupyter Notebook application. Amazon SageMaker manages creating the instance and its related resources, so we can focus on analysing our model training data without worrying about provisioning EC2 or storage resources directly.
+An Amazon SageMaker Notebook instance is a managed ML compute instance running the Jupyter Notebook application. Amazon SageMaker manages the creation of the instance and its related resources, so we can focus on analysing our model training data without worrying about provisioning EC2 or storage resources directly.
 <br>
 <br>
 
