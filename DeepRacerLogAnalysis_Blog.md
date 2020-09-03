@@ -4,7 +4,7 @@
 <br>
 
 ## What is AWS DeepRacer?
-AWS DeepRacer is the world’s first global autonomous racing league, driven by Reinforcement Learning! It is a fun and easy way for everyone to get started with Machine Learning, regardless of skill or background. As part of the digital transformation journey at DBS Bank, we are using AWS DeepRacer as a learning platform to equip more than 3000 of our employees with skills in AI/ML by the end of 2020. Thanks to DeepRacer's virtual simulation and training environment, our employees are able to upgrade their skills and pick up new knowledge, even when they are not physically in the office. The ability to run private races also allows us to create our own racing league, where our employees can put their newly-learned skills to the test.
+AWS DeepRacer is the world’s first global autonomous racing league, driven by Reinforcement Learning! It is a fun and easy way for everyone to get started with Machine Learning, regardless of skill or background. As part of our digital transformation journey at DBS Bank, we are taking innovative steps to future-proof our workforce. We've partnered with AWS to bring the AWS DeepRacer League to DBS to train over 3,000 employees in AI and ML by the end of the year. Thanks to DeepRacer's virtual simulation and training environment, our employees are able to upgrade their skills and pick up new knowledge, even when they are not physically in the office. The ability to run private races also allows us to create our own racing league, where our employees can put their newly-learned skills to the test.
 <br>
 <br>
 
@@ -32,22 +32,30 @@ Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models
 
 <h2>
 
-> *In this blog, I will share about some of the visualisations that I created. I will also show how we can make use of Amazon SageMaker to spin up a Notebook Instance to perform Log Analysis for our model training data.*
+> *In this blog, I will share about some of the visualisations that I created, and show how we can make use of Amazon SageMaker to spin up a Notebook instance to perform Log Analysis on our model training data.*
 
 </h2>
 <br>
 <br>
 
 ## Amazon SageMaker Notebook Instances
-An Amazon SageMaker Notebook Instance is an ML compute instance running the Jupyter Notebook application. Amazon SageMaker manages creating the instance and its related resources, so we can focus on analysing our models training data without worrying about provisioning EC2 resources directly.
+An Amazon SageMaker Notebook instance is a managed ML compute instance running the Jupyter Notebook application. Amazon SageMaker manages creating the instance and its related resources, so we can focus on analysing our model training data without worrying about provisioning EC2 or storage resources directly.
+<br>
+<br>
 
 ## Using Amazon SageMaker Notebook Instance for Log Analysis
-One of the biggest benefits of using an Amazon SageMaker Notebook Instance to perform DeepRacer Log Analysis, is that Amazon SageMaker automatically installs Anaconda packages and libraries for common deep learning platforms on our behalf, including TensorFlow deep learning libraries. It also automatically attaches an EBS storage volume to our Notebook instance, which we can use as a persistent working area to perform Log Analysis and store our analysis artifacts.
+One of the greatest benefits of using an Amazon SageMaker Notebook instance to perform DeepRacer Log Analysis, is that Amazon SageMaker automatically installs Anaconda packages and libraries for common deep learning platforms on our behalf, including TensorFlow deep learning libraries. It also automatically attaches a ML storage volume to our Notebook instance, which we can use as a persistent working area to perform Log Analysis and store our analysis artifacts.
+<br>
+<br>
 
 #### Creating a Notebook Instance
-To get started, I simply created a Notebook Instance from the Amazon SageMaker console. From the menu on the left, `Notebook > Notebook instances > Create notebook instance`.
+To get started, simply create a Notebook instance from the Amazon SageMaker console. From the menu on the left, `Notebook > Notebook instances > Create notebook instance`.
+<br>
+<br>
 
-<Pic showing SageMaker console -> Notebook -> Notebook instances -> Create notebook instance>
+![Creating a new SageMaker Notebook Instance](/images/log_analysis_blog_sagemakernotebookinstancepage.png)
+<br>
+<br>
 
 I only need to fill in my instance name, and ensure that the correct instance type is selected. For DeepRacer Log Analysis, the smallest instance type (`ml.t2.medium`) is usually sufficient for my needs. I will also use the default storage volume size of `5 GB`.
 
