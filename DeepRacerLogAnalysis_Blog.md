@@ -70,7 +70,7 @@ We'll only need to fill in our Notebook instance name, and ensure that the corre
 <br>
 <br>
 
-Once we have our Notebook instance started up and having an "InService" status, we can fire up JupyterLab, the IDE for Jupyter Notebooks.
+Once the Notebook instance is started up with an "InService" status, we can fire up JupyterLab, the IDE for Jupyter Notebooks.
 <br>
 <br>
 
