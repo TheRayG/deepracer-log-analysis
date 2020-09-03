@@ -19,7 +19,7 @@ As an individual racer, I've been active in the AWS DeepRacer League since 2019.
 <br>
 <br>
 
-After a gruelling month of racing, I emerged as the Champion in the F1 ProAm Race, beating fellow racers and the pro F1 drivers to the checkered flag! Looking back now, I attribute my win to having performed more experiments than my fellow competitors throughout that month of racing. Those experiments allowed me to continuously tweak and improve my model leading up to the final race at the end of the month. Behind those experiments are ideas that arose from data-driven insights through Log Analysis.
+After a gruelling month of racing, I emerged as the Champion in the F1 ProAm Race, beating fellow racers and the pro F1 drivers to the checkered flag! Looking back now, I attribute my win to having performed more experiments than most of my fellow competitors throughout that month of racing. Those experiments allowed me to continuously tweak and improve my model leading up to the final race at the end of the month. Behind those experiments are ideas that arose from data-driven insights through Log Analysis.
 <br>
 <br>
 
