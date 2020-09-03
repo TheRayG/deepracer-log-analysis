@@ -1,4 +1,4 @@
-# How I used Log Analysis to Drive Experiments & Win the AWS DeepRacer F1 ProAm Race
+# How I Used Log Analysis to Drive Experiments & Win the AWS DeepRacer F1 ProAm Race
 *A Data-driven Approach to Training & Tuning AWS DeepRacer Reinforcement Learning Models*
 <br>
 <br>
@@ -123,22 +123,31 @@ We're now ready to open up our Log Analysis Notebook to work its magic! Simply n
 <br>
 <br>
 
-Once we have our Notebook opened, the first thing we'll need to do is to specify the filenames of the 2 log files that we had just uploaded into the `logs` folder of our local cloned directory.
+Once we have our Notebook opened and the kernel selected, wait till the kernel status on the bottom left of the screen changes from "Starting" to "Idle". After that, edit the Notebook to specify the filenames of the 2 log files that we have just uploaded.
+<br>
+<br>
 
-<Pic of the 2 files in local cloned directory>
+![Specifying Our Log Filenames](/images/log_analysis_blog_notebookspecifylogfilenames.png)
+<br>
+<br>
 
-There are numerous markdown descriptions and comments in the Notebook to explain what each cell does. I'll highlight some of the visualisations from that Notebook and explain the thought process behind them below.
+There are numerous markdown descriptions and comments in my Log Analysis Notebook to explain what each cell does. I'll highlight some of the visualisations from that Notebook and explain some of the thought processes behind them below.
+<br>
+<br>
 
 ## Visualising the Performance Envelope of the Model
-Here is common question asked by beginners of AWS DeepRacer (and I find that this visualisation is a great way to explain it):
+Here is a common question asked by beginners of AWS DeepRacer (and I find that this visualisation is a great way to explain it):
 <h2>
   
 > "*If 2 models are trained for the same amount of time using the same Reward Function and Hyperparameters, why do they have different lap times when I evaluate them?*"
 
 </h2>
 <br>
+<br>
 
-<Pic of histogram/normal distribution>
+![Histogram of Lap Times](/images/log_analysis_blog_laptimehistogram.png)
+<br>
+<br>
 
 By plotting a histogram of lap times achieved by the model during training, we can show the relative probability of the model achieving various lap times. We can also work out statistically the average and best-case lap times we can expect from the model. I've noticed that the lap times of the model during training resembles a normal distribution - so I use the -2 and -3 Std Dev markers to show the potential best-case lap times for the model, albeit with just 2.275% (-2SD) and 0.135% (-3SD) chance of occurring respectively. This helps me to gauge if I should continue cloning and tweaking the model, or abandon it and start afresh with a different approach if the "performance curve" does not look good enough.
 
