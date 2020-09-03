@@ -90,19 +90,38 @@ After cloning the repository, we should see it appear in the folder structure on
 <br>
 
 #### Downloading Logs from the AWS DeepRacer Console
-To prepare the data that we want to analyse, we will have to download our model training logs from the AWS DeepRacer Console. From the model page of the model that we intend to analyse, navigate to `Training > Resources > Download Logs` to download the training log files, packaged in the form of a .tar.gz file.
+To prepare the data that we want to analyse, we will have to download our model training logs from the AWS DeepRacer Console. From the model page of the model that we intend to analyse, navigate to `Training > Resources > Download Logs` to download the training log files, which will be packaged in a .tar.gz file.
+<br>
+<br>
 
-<Pic showing model download button>
+![Downloading the DeepRacer Logs](/images/log_analysis_blog_downloadingdeepracerlogs.png)
+<br>
+<br>
 
 #### Extracting the Required Log Files for Analysis
-Extract the RoboMaker and SageMaker log files from the .tar.gz package (found in `logs/training/`), and then drag / upload the 2 log files into the `logs` folder in the local cloned directory.
+Extract the RoboMaker and SageMaker log files from the .tar.gz package (found in `logs/training/` sub-directory).
+<br>
+<br>
 
-<Pic showing folder structure of the .tar.gz>
-<Pic showing JupyterLab folder of the local cloned repo>
+![Extract the Log Files](/images/log_analysis_blog_deepracerlogsstructure.png)
+<br>
+<br>
 
-We're now ready to open up our Log Analysis Notebook to work its magic! Simply navigate into our local cloned directory, and double-click on the .ipynb file to open the Notebook up.
+Then drag or upload the 2 log files into the `/deepracer-log-analysis/logs` folder in the JupyterLab IDE.
+<br>
+<br>
 
-<Pic of launching the Notebook>
+![Uploading the Log Files](/images/log_analysis_blog_uploadedtraininglogs.png)
+<br>
+<br>
+
+We're now ready to open up our Log Analysis Notebook to work its magic! Simply navigate into the `/deepracer-log-analysis` folder on the left side of the IDE, then double-click on the .ipynb file to open up the Notebook. While opening the Notebook, you may be prompted a kernel. Choose a kernel that uses Python 3, such as `conda_tensorflow_p36`.
+<br>
+<br>
+
+![Selecting the Kernel](/images/log_analysis_blog_notebookkernelselection.png)
+<br>
+<br>
 
 Once we have our Notebook opened, the first thing we'll need to do is to specify the filenames of the 2 log files that we had just uploaded into the `logs` folder of our local cloned directory.
 
