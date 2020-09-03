@@ -131,7 +131,8 @@ Once we have our Notebook opened and the kernel selected, wait till the kernel s
 <br>
 <br>
 
-There are numerous markdown descriptions and comments in my Log Analysis Notebook to explain what each cell does. I'll highlight some of the visualisations from that Notebook and explain some of the thought processes behind them below.
+## Ready to Go!
+We can now run the Notebook by clicking on `Run > Run All Cells` in JupyterLab. There are numerous markdown descriptions and comments in my Log Analysis Notebook to explain what each cell does. I'll highlight some of the visualisations from that Notebook and explain some of the thought processes behind them below.
 <br>
 <br>
 
