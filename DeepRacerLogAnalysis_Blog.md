@@ -4,7 +4,9 @@
 <br>
 
 ## What is AWS DeepRacer?
-AWS DeepRacer is the world’s first global autonomous racing league, driven by Reinforcement Learning. It is also a fun and easy way for everyone to get started with Machine Learning, regardless of their background. As part of our digital transformation journey at DBS Bank, we are using AWS DeepRacer as a learning platform to equip more than 3000 of our employees with skills in AI/ML by the end of 2020. Thanks to DeepRacer's virtual simulation and training environment, our employees are able to upgrade their skills and pick up new knowledge, even when they are not physically in the office. The ability to run private races also allows us to create our own racing league, where our employees can pit their newfound skills against each other competitively.
+AWS DeepRacer is the world’s first global autonomous racing league, driven by Reinforcement Learning! It is a fun and easy way for everyone to get started with Machine Learning, regardless of skill or background. As part of the digital transformation journey at DBS Bank, we are using AWS DeepRacer as a learning platform to equip more than 3000 of our employees with skills in AI/ML by the end of 2020. Thanks to DeepRacer's virtual simulation and training environment, our employees are able to upgrade their skills and pick up new knowledge, even when they are not physically in the office. The ability to run private races also allows us to create our own racing league, where our employees can put their newly-learned skills to the test.
+<br>
+<br>
 
 ## Winning the F1 ProAm Race in May 2020
 In May 2020, racers from around the world were given a unique opportunity to test their Machine Learning skills against F1 professionals in the AWS DeepRacer League F1 ProAm Event. We got to train our models on a replica of the F1 Spanish Grand Prix track, and the top 10 racers from the month-long Head-to-Head qualifying race would then face off against F1 professional drivers Daniel Ricciardo and Tatiana Calderon in a Grand Prix-style race.
