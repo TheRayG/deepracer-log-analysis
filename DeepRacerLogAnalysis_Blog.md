@@ -39,7 +39,7 @@ Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models
 </h2>
 <br>
 
-If you are already familiar with opening Notebooks in a JupyterLab Notebook application, you can simply clone [my Log Analysis repository](https://github.com/TheRayG/deepracer-log-analysis) and **[skip directly](#ready-to-go)** to the Log Analysis stuff.
+If you are already familiar with opening Notebooks in a JupyterLab Notebook application, you can simply clone **[my Log Analysis repository](https://github.com/TheRayG/deepracer-log-analysis)** and **[skip directly](#ready-to-go)** to the Log Analysis stuff.
 <br>
 <br>
 
@@ -79,7 +79,7 @@ Once the Notebook instance is started up with an "InService" status, we can fire
 <br>
 
 #### Cloning the Log Analysis Repo from JupyterLab
-From the JupyterLab IDE, we can easily clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, I can clone [my Log Analysis repository](https://github.com/TheRayG/deepracer-log-analysis) in seconds. To clone from my Log Analysis repository, use `https://github.com/TheRayG/deepracer-log-analysis.git` as the URI.
+From the JupyterLab IDE, we can easily clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, I can clone **[my Log Analysis repository](https://github.com/TheRayG/deepracer-log-analysis)** in seconds. To clone from my Log Analysis repository, use `https://github.com/TheRayG/deepracer-log-analysis.git` as the URI.
 <br>
 <br>
 
