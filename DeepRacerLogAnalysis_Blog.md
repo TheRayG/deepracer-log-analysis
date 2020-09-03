@@ -150,9 +150,11 @@ Here is a common question asked by beginners of AWS DeepRacer (and I find that t
 <br>
 
 I use this to illustrate the "performance envelope" of my model. By plotting a histogram of lap times achieved by the model during training, we can show the relative probability of the model achieving various lap times. We can also work out statistically the average and best-case lap times that we can expect from the model. I've noticed that the lap times of the model during training resembles a normal distribution, so I use the -2 and -3 Std Dev markers to show the potential best-case lap times for the model, albeit with just 2.275% (-2 SD) and 0.135% (-3 SD) chance of occurring respectively. This helps me to gauge if I should continue cloning and tweaking the model, or abandon it and start afresh with a different approach.
+<br>
+<br>
 
 ## Identifying Potential Model Checkpoints for Race Submission
-When training many different models for a race, it is also common for racers to ask:
+When training many different models for a race, it is common for racers to ask:
 <h2>
   
 > "*Which model would give me the highest chance of winning a Virtual Race?*"
@@ -160,9 +162,13 @@ When training many different models for a race, it is also common for racers to 
 </h2>
 <br>
 
-To answer that question, I plotted the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (more dots for a particular iteration).
+To answer that question, I plot the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (dense cluster of dots for a particular iteration).
+<br>
+<br>
 
-<Pic of scatter plot of elapsed time vs iteration>
+![Scatter Plot of Lap Times per Iteration](/images/log_analysis_blog_laptimeperiteration.png)
+<br>
+<br>
 
 ## Identifying Convergence and Gauging Consistency
 As racers gain experience with model training, they'll start paying to *Convergence* in their models. Simply put, convergence in the AWS DeepRacer context is when a model is performing close to its best (in terms of average lap progress), and further training may harm its performance or make it *Overfit*, such that it will only do well for that track in a very specific simulation environment, but not in other tracks or in a physical DeepRacer car. That begs the following questions:
