@@ -129,7 +129,7 @@ We're now ready to open up our Log Analysis Notebook to work its magic! Simply n
 <br>
 <br>
 
-Once we have our Notebook opened and the kernel selected, wait till the kernel status on the bottom left of the screen changes from "Starting" to "Idle". After that, edit the Notebook to specify the filenames of the 2 log files that we have just uploaded.
+Once we have our Notebook opened and the kernel selected, wait till the kernel status on the bottom left of the screen changes from "Starting" to "Idle". After that, edit the Notebook to specify the path and names of the 2 log files that we have just uploaded.
 <br>
 <br>
 
