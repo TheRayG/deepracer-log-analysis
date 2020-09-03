@@ -9,9 +9,13 @@ AWS DeepRacer is the world’s first global autonomous racing league, driven by 
 <br>
 
 ## Winning the F1 ProAm Race in May 2020
-In May 2020, racers from around the world were given a unique opportunity to test their Machine Learning skills against F1 professionals in the AWS DeepRacer League F1 ProAm Event. We got to train our models on a replica of the F1 Spanish Grand Prix track, and the top 10 racers from the month-long Head-to-Head qualifying race would then face off against F1 professional drivers Daniel Ricciardo and Tatiana Calderon in a Grand Prix-style race.
+In May 2020, racers from around the world were given a unique opportunity to pit their Machine Learning skills against F1 professionals in the AWS DeepRacer F1 ProAm Race. We got to train our models on a replica of the F1 Spanish Grand Prix track, and the top 10 racers from the month-long Head-to-Head qualifying race would then face off against F1 professional drivers Daniel Ricciardo and Tatiana Calderon in a Grand Prix-style race.
+<br>
+<br>
 
 ![F1 ProAm Race](/images/log_analysis_blog_f1proamrace.png)
+<br>
+<br>
 
 After a gruelling month of racing, I emerged as the Champion in the F1 ProAm Race, beating fellow racer JJ and the pro F1 drivers to the checkered flag! I attribute my win to having performed more experiments than my fellow competitors throughout that month of racing. Those experiments allowed me to continuously tweak and improve my model leading up to the final race at the end of the month. Behind those experiments, are ideas that arose from data-driven insights through Log Analysis.
 
