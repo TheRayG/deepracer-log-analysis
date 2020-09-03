@@ -11,7 +11,7 @@ At DBS Bank where I work, as part of our digital transformation journey, we are 
 <br>
 
 ## Winning the F1 ProAm Race in May 2020
-In May 2020, racers from around the world were given a unique opportunity to pit their Machine Learning skills against F1 professionals in the AWS DeepRacer F1 ProAm Race. We got to train our models on a replica of the F1 Spanish Grand Prix track, and the top 10 racers from the month-long Head-to-Head qualifying race would then face off against F1 professional drivers Daniel Ricciardo and Tatiana Calderon in a Grand Prix-style race.
+As an individual racer, I've been active in the AWS DeepRacer League since 2019. In May this year, racers from around the world were given a unique opportunity to pit their Machine Learning skills against F1 professionals in the AWS DeepRacer F1 ProAm Race. We got to train our models on a replica of the F1 Spanish Grand Prix track, and the top 10 racers from the month-long Head-to-Head qualifying race would then face off against F1 professional drivers Daniel Ricciardo and Tatiana Calderon in a Grand Prix-style race.
 <br>
 <br>
 
