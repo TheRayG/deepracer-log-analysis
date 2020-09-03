@@ -43,7 +43,7 @@ An Amazon SageMaker Notebook instance is a managed ML compute instance running t
 <br>
 
 ## Using Amazon SageMaker Notebook Instance for Log Analysis
-One of the greatest benefits of using an Amazon SageMaker Notebook instance to perform DeepRacer Log Analysis, is that Amazon SageMaker automatically installs Anaconda packages and libraries for common deep learning platforms on our behalf, including TensorFlow deep learning libraries. It also automatically attaches a ML storage volume to our Notebook instance, which we can use as a persistent working area to perform Log Analysis and store our analysis artifacts.
+One of the greatest benefits of using an Amazon SageMaker Notebook instance to perform DeepRacer Log Analysis, is that Amazon SageMaker automatically installs Anaconda packages and libraries for common deep learning platforms on our behalf, including TensorFlow deep learning libraries. It also automatically attaches an ML storage volume to our Notebook instance, which we can use as a persistent working storage to perform Log Analysis and retain our analysis artifacts.
 <br>
 <br>
 
@@ -56,18 +56,38 @@ To get started, simply create a Notebook instance from the Amazon SageMaker cons
 <br>
 <br>
 
-I only need to fill in my instance name, and ensure that the correct instance type is selected. For DeepRacer Log Analysis, the smallest instance type (`ml.t2.medium`) is usually sufficient for my needs. I will also use the default storage volume size of `5 GB`.
+We'll only need to fill in our Notebook instance name, and ensure that the correct instance type is selected. For DeepRacer Log Analysis, the smallest instance type (`ml.t2.medium`) is usually sufficient. Let's use the default storage volume size of `5 GB` for a start.
+<br>
+<br>
 
-<Pic showing Create notebook instance screen>
+![Create Notebook Instance Screen](/images/log_analysis_blog_creatingnotebookinstance.png)
+<br>
+<br>
 
-Once I have my Notebook Instance started up, I can fire up JupyterLab, the IDE for Jupyter Notebooks.
+Once we have our Notebook instance started up and having an "InService" status, we can fire up JupyterLab, the IDE for Jupyter Notebooks.
+<br>
+<br>
 
-<Pic showing JupyterLab button and Empty Notebook>
+![Notebook Instance In Service](/images/log_analysis_blog_notebookinstanceinservice.png)
+<br>
+<br>
 
 #### Cloning the Log Analysis Repo from JupyterLab
-From the JupyterLab IDE, it is extremely easy to clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, with Git integration, I can clone my [Log Analysis repository](https://github.com/TheRayG/deepracer-log-analysis) in seconds.
+From the JupyterLab IDE, we can easily clone a Git repository to make use of Log Analysis Notebooks shared by the community. For example, I can clone [my Log Analysis repository](https://github.com/TheRayG/deepracer-log-analysis) in seconds. To clone from my Log Analysis repository, use `https://github.com/TheRayG/deepracer-log-analysis.git` as the URI.
+<br>
+<br>
 
 ![Cloning a Notebook Repo](/images/log_analysis_blog_cloninganotebookrepo.png)
+<br>
+<br>
+
+After cloning the repository, we should see it appear in the folder structure on the left side of the JupyterLab IDE.
+<br>
+<br>
+
+![JupterLab Screen After Cloning a Repo](/images/log_analysis_blog_jupyterlabwithclonedrepo.png)
+<br>
+<br>
 
 #### Downloading Logs from the AWS DeepRacer Console
 To prepare the data that we want to analyse, we will have to download our model training logs from the AWS DeepRacer Console. From the model page of the model that we intend to analyse, navigate to `Training > Resources > Download Logs` to download the training log files, packaged in the form of a .tar.gz file.
