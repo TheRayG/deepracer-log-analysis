@@ -236,7 +236,7 @@ By plotting a heatmap of rewards over the track, it is easy to see how consisten
 <br>
 
 ## Experiment, Experiment, Experiment...
-For the F1 ProAm Race which ran in the month of May, I planned to do 2 experiments per day (ie., at least 60 experiments), to try out different reward strategies and racing lines. Using Log Analysis to surface insights from the training data, I was able to iterate quickly while focusing on incremental improvements. It helped me to win the race against other top racers and F1 pros, so it is my hope that by sharing these ideas with the community, others can benefit and learn from them too. Together as a community of practice, we can help to accelerate learning for everyone, and to raise the bar for the AI/ML community in general.
+For the F1 ProAm Race which ran in the month of May, I planned to do 2 experiments per day (ie., at least 60 experiments), to try out different reward strategies and racing lines. Using Log Analysis to surface insights from the training data, I was able to iterate quickly while focusing on incremental improvements. It helped me to win the race against other top racers and F1 pros, so it is my hope that by sharing these ideas with the community, others can benefit and learn from them too.
 <h2>
 
 > "*Is the car going flat out on the start / finish straight?*"
@@ -245,6 +245,10 @@ For the F1 ProAm Race which ran in the month of May, I planned to do 2 experimen
 <br>
 
 ![Rewards Heatmap for Highest Speed](/images/log_analysis_blog_rewardsheatmaphighestspeed.png)
+<br>
+<br>
+
+Together as a community of practice, we can help to accelerate learning for everyone, and to raise the bar for the AI/ML community in general.
 <br>
 <br>
 
