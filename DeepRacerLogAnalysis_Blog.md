@@ -70,22 +70,64 @@ Once we have our Notebook opened, the first thing we'll need to do is to specify
 There are numerous markdown descriptions and comments in the Notebook to explain what each cell does. I'll highlight some of the visualisations from that Notebook and explain the thought process behind them below.
 
 ## Visualising the Performance Envelope of the Model
-One common question asked by beginners of AWS DeepRacer is, "*If 2 models are trained using the same Reward Function and Hyperparameters, why do they have different lap times when I evaluate them?*" I find that this visualisation is a great way to explain that:
+Here is common question asked by beginners of AWS DeepRacer (and I find that this visualisation is a great way to explain it):
+<h2>
+  
+> "*If 2 models are trained for the same amount of time using the same Reward Function and Hyperparameters, why do they have different lap times when I evaluate them?*"
+
+</h2>
+<br>
 
 <Pic of histogram/normal distribution>
 
 By plotting a histogram of lap times achieved by the model during training, we can show the relative probability of the model achieving various lap times. We can also work out statistically the average and best-case lap times we can expect from the model. I've noticed that the lap times of the model during training resembles a normal distribution - so I use the -2 and -3 Std Dev markers to show the potential best-case lap times for the model, albeit with just 2.275% (-2SD) and 0.135% (-3SD) chance of occurring respectively. This helps me to gauge if I should continue cloning and tweaking the model, or abandon it and start afresh with a different approach if the "performance curve" does not look good enough.
 
 ## Identifying Potential Model Checkpoints for Race Submission
-When training many different models for a race, it is also common for racers to ask, "*Which model would give me the highest chance of winning a Virtual Race?*" To answer that question, I plotted the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (more dots for a particular iteration).
+When training many different models for a race, it is also common for racers to ask:
+<h2>
+  
+> "*Which model would give me the highest chance of winning a Virtual Race?*"
+
+</h2>
+<br>
+
+To answer that question, I plotted the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (more dots for a particular iteration).
 
 <Pic of scatter plot of elapsed time vs iteration>
 
 ## Identifying Convergence and Gauging Consistency
+As racers gain experience with model training, they'll start paying to *Convergence* in their models. Simply put, convergence in the AWS DeepRacer context is when a model is performing close to its best (in terms of average lap progress), and further training may harm its performance or make it *Overfit*, such that it will only do well for that track in a very specific simulation environment, but not in other tracks or in a physical DeepRacer car. That begs the following questions:
+<h2>
 
+> "*How do I tell when the model has converged? How consistent is my model after it has converged?*"
+
+</h2>
+<br>
+
+To aid myself in visualising convergence, I plotted the Entropy information from the SageMaker policy training logs, in addition to the usual plots for Rewards and Progress. The thinking behind this is, as rewards and progress increase, the entropy value should decrease. When rewards and progress plateau, the entropy loss should also flatten out. Hence I use entropy as an additional indicator of convergence.
+
+To gauge the consistency of my model, I also plot the percentage of lap completions per iteration during training. During training, once the model is capable of completing 100% of laps, the percentage of completed laps should creep up in subsequent iterations, until around the point of convergence, where the percentage value should plateau too.
+
+<Pic of reward entropy plot>
+
+The model training process is probabilistic, as the reinforcement learning agent incorporates entropy to explore the environment. To smoothen out the effects of the probablistic model in my visualisation, I use a simple moving average over 3 iterations for each of my plotted metrics.
 
 ## Identifying Inefficiencies in Driving Behaviour
+Once racers have a competitive model, they'll start to wonder:
+<h2>
+
+> "*Are there sections of the track where the car is driving inefficiently? What are the sections where I can encourage the car to speed up? Is the car over- or under-steering at the various turns on the track?*"
+
+</h2>
+<br>
+
+In pursuit of answering these questions, I designed a visualisation that showed the average speed and steering angle of the car measured at every waypoint of the track. This allowed me to see visually how the model is negotiating the track, because from this plot, you can see the rate at which the model is speeding up / slowing down as it travels along the waypoints. You can also see how the model is adjusting its steering angle as it negotiates turns. What I love about this visualisation, is that it allows me to see clearly, at which point after a long straight, is the model starting to "brake", before entering into the turn. It also highlights if a model is accelerating quickly upon exiting a turn.
+
+<Pic of track layout and waypoints>
+<Pic of horizontal speed / steering vs waypoints>
 
 ## Identifying Track Sections to Tweak Actions & Rewards
+
+## Further Experiments
 
 ## Cleaning Up
