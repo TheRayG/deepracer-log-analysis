@@ -214,7 +214,7 @@ You can also see how the model is adjusting its steering angle as it negotiates 
 <br>
 <br>
 
-![Speed and Steering per Waypoint](/images/xlog_analysis_blog_speedsteeringperwaypoint.png)
+![Speed and Steering per Waypoint](/images/log_analysis_blog_speedsteeringperwaypoint.png)
 <br>
 <br>
 
