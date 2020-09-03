@@ -11,7 +11,7 @@ The code here:
 - is compatible with downloaded logs from the new console (after Aug 2020).
 - should be backwards compatible with DeepRacer logs previously downloaded from CloudWatch Logs too.
 - is maintained such that it can be run directly from a Amazon SageMaker Notebook instance, as long as the relative paths of the RoboMaker and SageMaker log files are specified correctly.
-- does not require access to any AWS Services (hence no awscli or boto required) when analysing the log data files.
+- does not require access to any AWS Services (hence no awscli or boto3 required) when analysing the log data files.
 
 ## Test-drive this Notebook!
 
