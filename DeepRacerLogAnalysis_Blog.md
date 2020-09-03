@@ -132,16 +132,26 @@ While Speed is the primary performance criteria in a Time Trial race, Stability 
 
 > "*Is the car over- or under-steering at any of the turns? Which turn should I focus on optimising for in subsequent experiments?*"
 
-By plotting a heatmap of rewards over the track, it is easy to see how consistently we are rewarding the model at various parts of the track. A thin band in the heatmap reflects very consistent rewards, while a sparse scattering of dots brings to attention the parts of the track where the car is having trouble getting rewards. For my reward function, this usually indicates turns at which the model is over- or under-steering.
 </h2>
 <br>
+
+By plotting a heatmap of rewards over the track, it is easy to see how consistently we are rewarding the model at various parts of the track. A thin band in the heatmap reflects very consistent rewards, while a sparse scattering of dots brings to attention the parts of the track where the car is having trouble getting rewards. For my reward function, this usually indicates turns at which the model is over- or under-steering.
 
 <Pic of rewards heatmap on track>
 
 ## Experiment, Experiment, Experiment...
 For the F1 ProAm Race which ran for the entire month of May in 2020, I planned to do 2 model training experiments per day to try out different reward strategies and racing lines. Using Log Analysis to find insights from the training data, I was able to iterate on my experiments while focusing on incremental improvements. It helped me to win the race against other top racers and F1 pros, so it is my hope that by sharing these ideas with the community, others can benefit and learn from them too. Together as a community of practice, we can help to accelerate learning for everyone, and to raise the bar for the AI/ML community!
+<h2>
+
+> "*Is the car going flat out on the start / finish straight?*"
+
+</h2>
+<br>
+
+<pic of reward heatmap for highest speed on track>
 
 ## Cleaning Up
 To save on ML compute costs, when you're done with Log Analysis, you can stop the Notebook instance without deleting it. The Notebook, data and log files will still be retained, as long as you don't delete the Notebook instance. Note that a stopped instance will still incur cost for the provisioned ML storage.
 
-When you no longer need the Notebook or data, you can delete the instance, which will also delete the attached ML storage volume.
+When you no longer need the Notebook or data, you can delete the instance, which will also delete the attached ML storage volume, so that you'll no longer incur its related ML storage cost.
+
