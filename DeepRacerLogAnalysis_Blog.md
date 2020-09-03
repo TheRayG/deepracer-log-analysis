@@ -6,7 +6,7 @@
 ## What is AWS DeepRacer & How is it Changing the Way People Learn About Machine Learning?
 AWS DeepRacer is the world’s first global autonomous racing league, driven by Reinforcement Learning. It is a fun and easy way for individuals to get started with Machine Learning, regardless of skill or background. For companies, it is also powerful platform to facilitate the teaching of Machine Learning to employees at the enterprise level.
 
-As part of our digital transformation journey at DBS Bank, we are taking innovative steps to future-proof our workforce. We've partnered with AWS to bring the AWS DeepRacer League to DBS to train over 3,000 employees in AI and ML by the end of the year. Thanks to DeepRacer's virtual simulation and training environment, our employees are able to upgrade their skills and pick up new knowledge, even when they are not physically in the office. The ability to run private races also allows us to create our own racing league, where our employees can put their newly-learned skills to the test.
+At DBS Bank where I work, as part of our digital transformation journey, we are taking innovative steps to future-proof our workforce. We've partnered with AWS to bring the AWS DeepRacer League to DBS to train over 3,000 employees in AI and ML by the end of the year. Thanks to DeepRacer's virtual simulation and training environment, our employees are able to upgrade their skills and pick up new knowledge, even when they are not physically in the office. The ability to run private races also allows us to create our own racing league, where our employees can put their newly-learned skills to the test.
 <br>
 <br>
 
