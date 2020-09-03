@@ -32,7 +32,7 @@ Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models
 
 <h2>
 
-> *In this blog, I will share about some of the visualisations that I created, and show how we can make use of Amazon SageMaker to spin up a Notebook instance to perform Log Analysis on our model training data.*
+> *In this blog, I will share about some of the visualisations that I created, and show how we can make use of Amazon SageMaker to spin up a Notebook instance to perform Log Analysis on our DeepRacer model training data.*
 
 </h2>
 <br>
