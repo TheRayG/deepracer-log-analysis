@@ -127,6 +127,7 @@ In pursuit of answering these questions, I designed a visualisation that showed 
 <Pic of horizontal speed / steering vs waypoints>
 
 ## Identifying Track Sections to Tweak Actions & Rewards
+While Speed is the primary performance criteria in a Time Trial race, Stability is also important in an Object Avoidance or Head-to-head race. As there are time penalties for the car going off-track, it is very important 
 
 ## Further Experiments
 
