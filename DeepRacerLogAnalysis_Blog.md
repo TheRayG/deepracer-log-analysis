@@ -37,7 +37,7 @@ Log Analysis allows us to use a Jupyter Notebook to analyse and debug our models
 </h2>
 <br>
 
-If you are already familiar with opening Notebooks in a JupyterLab Notebook application, you can skip directly [here](#ready-to-go!) to get to the Log Analysis stuff.
+If you are already familiar with opening Notebooks in a JupyterLab Notebook application, you can **[skip directly](#ready-to-go)** to the Log Analysis stuff.
 <br>
 <br>
 
