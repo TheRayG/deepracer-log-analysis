@@ -1,6 +1,7 @@
 # How I used Log Analysis to Drive Experiments & Win the AWS DeepRacer F1 ProAm Race
 *A Data-driven Approach to Training & Tuning AWS DeepRacer Reinforcement Learning Models*
 <br>
+<br>
 
 ## What is AWS DeepRacer?
 AWS DeepRacer is the world’s first global autonomous racing league, driven by Reinforcement Learning. It is also a fun and easy way for everyone to get started with Machine Learning, regardless of their background. As part of our digital transformation journey at DBS Bank, we are using AWS DeepRacer as a learning platform to equip more than 3000 of our employees with skills in AI/ML by the end of 2020. Thanks to DeepRacer's virtual simulation and training environment, our employees are able to upgrade their skills and pick up new knowledge, even when they are not physically in the office. The ability to run private races also allows us to create our own racing league, where our employees can pit their newfound skills against each other competitively.
