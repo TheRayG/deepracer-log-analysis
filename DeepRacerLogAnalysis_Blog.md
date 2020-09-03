@@ -149,7 +149,7 @@ Here is a common question asked by beginners of AWS DeepRacer (and I find that t
 <br>
 <br>
 
-By plotting a histogram of lap times achieved by the model during training, we can show the relative probability of the model achieving various lap times. We can also work out statistically the average and best-case lap times we can expect from the model. I've noticed that the lap times of the model during training resembles a normal distribution - so I use the -2 and -3 Std Dev markers to show the potential best-case lap times for the model, albeit with just 2.275% (-2SD) and 0.135% (-3SD) chance of occurring respectively. This helps me to gauge if I should continue cloning and tweaking the model, or abandon it and start afresh with a different approach if the "performance curve" does not look good enough.
+I use this to illustrate the "performance envelope" of my model. By plotting a histogram of lap times achieved by the model during training, we can show the relative probability of the model achieving various lap times. We can also work out statistically the average and best-case lap times that we can expect from the model. I've noticed that the lap times of the model during training resembles a normal distribution, so I use the -2 and -3 Std Dev markers to show the potential best-case lap times for the model, albeit with just 2.275% (-2 SD) and 0.135% (-3 SD) chance of occurring respectively. This helps me to gauge if I should continue cloning and tweaking the model, or abandon it and start afresh with a different approach.
 
 ## Identifying Potential Model Checkpoints for Race Submission
 When training many different models for a race, it is also common for racers to ask:
