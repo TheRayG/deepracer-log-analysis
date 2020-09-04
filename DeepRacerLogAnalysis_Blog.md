@@ -242,7 +242,7 @@ By plotting a heatmap of rewards over the track, it is easy to see how consisten
 <br>
 <br>
 
-For example, in the highlighted parts of the above plot, the model is not consistently going around those turns according to the racing line that I am rewarding for. It is actually over-steering upon exiting the turn around waypoint 60, and under-steering around the two highlighted turns. Tweaking the action space may help (in the case of under-steer, lowering the speed at high steering angles). Interestingly, the lap completion rate of the model can increase substantially with such minor tweaks, without sacrificing lap times!
+For example, in the highlighted parts of the above plot, the model is not consistently going around those turns according to the racing line that I am rewarding for. It is actually over-steering at Turn 3 around waypoint 60, and under-steering around the other two highlighted turns. Tweaking the action space may help (in the case of under-steer, lowering the speed at high steering angles). Interestingly, the lap completion rate of the model can increase substantially with such minor tweaks, without sacrificing lap times!
 <br>
 <br>
 
