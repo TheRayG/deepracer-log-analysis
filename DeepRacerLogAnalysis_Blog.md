@@ -261,7 +261,7 @@ For the F1 ProAm Race which ran in the month of May, I planned to do 2 experimen
 <br>
 <br>
 
-Together as a community of practice, we can help to accelerate learning for everyone, and raise the bar for the AI/ML community in general.
+Together as a community of practice, we can help to accelerate learning for everyone, and raise the bar for the AI/ML community in general!
 <br>
 <br>
 
