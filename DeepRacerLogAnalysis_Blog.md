@@ -169,7 +169,7 @@ When training many different models for a race, it is common for racers to ask:
 </h2>
 <br>
 
-To answer that question, I plot the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (dense cluster of dots for a particular iteration). From the above diagram, I would choose the model checkpoints from the 3 highlighted iterations for race submission.
+To answer that question, I plot the top quartile (p25) lap times vs iterations from the training data, to identify potential model checkpoints for race submission. This scatter plot also allows me to identify potential trade-offs between speed (dots with very fast lap times) and stability (dense cluster of dots for a particular iteration). From the below diagram, I would choose model checkpoints from the 3 highlighted iterations for race submission.
 <br>
 <br>
 
