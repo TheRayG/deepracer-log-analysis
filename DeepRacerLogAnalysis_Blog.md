@@ -188,7 +188,7 @@ As racers gain experience with model training, they'll start paying attention to
 
 To aid in visualising convergence, I overlay the *Entropy* information from the SageMaker policy training logs over the usual plots for Rewards and Progress. The thinking behind this is, as rewards and progress increase, the entropy value should decrease. When rewards and progress plateau, the entropy loss should also flatten out. Hence I use entropy as an additional indicator for convergence.
 
-To gauge the consistency of my model, I also plot the percentage of lap completions per iteration during training. Once the model is capable of completing 100% of laps, the percentage of completed laps should creep up in subsequent iterations, until around the point of convergence, when the percentage value should plateau too.
+To gauge the consistency of my model, I also plot the percentage of lap completions per iteration during training. Once the model is capable of completing laps, the percentage of completed laps should creep up in subsequent iterations, until around the point of convergence, when the percentage value should plateau too.
 <br>
 <br>
 
