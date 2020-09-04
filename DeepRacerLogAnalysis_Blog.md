@@ -269,5 +269,7 @@ Together as a community of practice, we can help to accelerate learning for ever
 To save on ML compute costs, when you're done with Log Analysis, you can stop the Notebook instance without deleting it. The Notebook, data and log files will still be retained, as long as you don't delete the Notebook instance. Note that a stopped instance will still incur cost for the provisioned ML storage. But you can always re-start the instance later on to continue working on the Notebook.
 
 When you no longer need the Notebook or data, you can permanently delete the instance, which will also delete the attached ML storage volume, so that you'll no longer incur its related ML storage cost.
+
+Pricing details for Amazon SageMaker Notebook instances can be found [here](https://aws.amazon.com/sagemaker/pricing/).
 <br>
 <br>
