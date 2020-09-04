@@ -242,6 +242,10 @@ By plotting a heatmap of rewards over the track, it is easy to see how consisten
 <br>
 <br>
 
+For example, in the highlighted parts of the above plot, the model is not consistently going around those turns according to the racing line that I am rewarding for. It is actually under-steering around those turns. Tweaking the action space may help (in the case of under-steer, lowering the speed at high steering angles). Interestingly, the lap completion rate of the model can increase substantially with such minor tweaks, without sacrificing lap times!
+<br>
+<br>
+
 ## Experiment, Experiment, Experiment...
 For the F1 ProAm Race which ran in the month of May, I planned to do 2 experiments per day (ie., at least 60 experiments), to try out different reward strategies and racing lines. Using Log Analysis to surface insights from the training data, I was able to iterate quickly while focusing on incremental improvements. It helped me to win the race against other top racers and F1 pros, so it is my hope that by sharing these ideas with the community, others can benefit and learn from them too.
 <br>
