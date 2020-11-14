@@ -13,6 +13,12 @@ The code here:
 - is maintained such that it can be run directly from a Amazon SageMaker Notebook instance, as long as the relative paths of the RoboMaker and SageMaker log files are specified correctly.
 - does not require access to any AWS Services (hence no awscli or boto3 required) when analysing the log data files.
 
+## Read My AWS Machine Learning Blog
+In this [Machine Learning blog](https://aws.amazon.com/blogs/machine-learning/using-log-analysis-to-drive-experiments-and-win-the-aws-deepracer-f1-proam-race/), I explain how I used this Notebook to drive experiments and win the [AWS DeepRacer F1 ProAm Race](https://aws.amazon.com/deepracer/f1/).
+
+## Watch the Technical Deep Dive Video
+In this [Deep Dive video](https://youtu.be/g2VFp43eihw), I explain how I used some of the visualizations in this Notebook to optimize racing lines and determine the performance envelope of my models.
+
 ## Test-drive this Notebook!
 
 To take this Notebook on a quick test drive, just do the following:
