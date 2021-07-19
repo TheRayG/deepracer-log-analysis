@@ -1,0 +1,1411 @@
+Writing training job pid to /opt/ml/training_worker.pid: 57
+Training Worker Args: Namespace(aws_region='us-east-1', checkpoint_dir='./checkpoint_sagemaker', environment_s3_key=None, framework='tensorflow', model_metadata_s3_key='s3://aws-deepracer-data-us-east-1-1/data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/model_metadata.json', preset_s3_key=None, pretrained_checkpoint_dir='./pretrained_checkpoint_sagemaker', pretrained_s3_bucket=None, pretrained_s3_prefix='sagemaker', s3_bucket='aws-deepracer-data-us-east-1-1', s3_prefix='data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts')
+[s3] Successfully downloaded model metadata                  from s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/model_metadata.json to local ./custom_files/agent/model_metadata.json.
+Sensor list ['FRONT_FACING_CAMERA'], network DEEP_CONVOLUTIONAL_NETWORK_SHALLOW, simapp_version 4.0, training_algorithm sac, action_space_type continuous lidar_config {'num_sectors': 8, 'num_values_per_sector': 8, 'clipping_dist': 2.0}
+Action space from file: {'steering_angle': {'high': 15, 'low': -15}, 'speed': {'high': 2, 'low': 0.5}}
+Using the following hyper-parameters
+{
+  "batch_size": 64,
+  "discount_factor": 0.999,
+  "e_greedy_value": 0.05,
+  "epsilon_steps": 10000,
+  "exploration_type": "additive_noise",
+  "loss_type": "huber",
+  "lr": 0.0003,
+  "num_episodes_between_training": 1,
+  "sac_alpha": 0.2,
+  "stack_size": 1,
+  "term_cond_avg_score": 100000.0,
+  "term_cond_max_episodes": 100000
+}
+[s3] Successfully uploaded hyperparameters to                  s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/ip/hyperparameters.json.
+Hostname: ip-10-0-209-135.ec2.internal
+[s3] Successfully uploaded ip address to                  s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/ip/ip.json.
+[s3] Successfully uploaded ip done to                  s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/ip/done.
+## Creating graph - name: MultiAgentGraphManager
+## Start physics before creating graph
+## Create graph
+## Creating agent - name: agent
+[RL] Created agent loggers
+[RL] Dynamic import of memory:  "ExperienceReplayParameters" {
+    "allow_duplicates_in_batch_sampling": true,
+    "load_memory_from_file_path": null,
+    "max_size": [
+        "<MemoryGranularity.Transitions: 0>",
+        1000000
+    ],
+    "shared_memory": false
+}
+[RL] Dynamically imported of memory <rl_coach.memories.non_episodic.experience_replay.ExperienceReplay object at 0x7f7f1aa1f198>
+[RL] Setting devices
+[RL] Setting filters
+[RL] Setting filter devices: numpy
+[RL] Setting Phase
+[RL] After setting Phase
+[RL] Setting signals
+[RL] Agent init successful
+## Created agent: agent
+WARNING:tensorflow:From /opt/amazon/install/sagemaker_rl_agent/lib/python3.6/site-packages/markov/multi_agent_coach/architectures/tensorflow_components/heads/sac_head.py:65: MultivariateNormalDiag.__init__ (from tensorflow.contrib.distributions.python.ops.mvn_diag) is deprecated and will be removed after 2018-10-01.
+Instructions for updating:
+The TensorFlow Distributions library has moved to TensorFlow Probability (https://github.com/tensorflow/probability). You should update all references to use `tfp.distributions` instead of `tf.contrib.distributions`.
+WARNING:tensorflow:From /root/anaconda/envs/sagemaker_env/lib/python3.6/site-packages/tensorflow/contrib/distributions/python/ops/mvn_diag.py:223: MultivariateNormalLinearOperator.__init__ (from tensorflow.contrib.distributions.python.ops.mvn_linear_operator) is deprecated and will be removed after 2018-10-01.
+Instructions for updating:
+The TensorFlow Distributions library has moved to TensorFlow Probability (https://github.com/tensorflow/probability). You should update all references to use `tfp.distributions` instead of `tf.contrib.distributions`.
+WARNING:tensorflow:From /root/anaconda/envs/sagemaker_env/lib/python3.6/site-packages/tensorflow/contrib/distributions/python/ops/mvn_linear_operator.py:200: AffineLinearOperator.__init__ (from tensorflow.contrib.distributions.python.ops.bijectors.affine_linear_operator) is deprecated and will be removed after 2018-10-01.
+Instructions for updating:
+The TensorFlow Distributions library has moved to TensorFlow Probability (https://github.com/tensorflow/probability). You should update all references to use `tfp.distributions` instead of `tf.contrib.distributions`.
+WARNING:tensorflow:From /root/anaconda/envs/sagemaker_env/lib/python3.6/site-packages/tensorflow/contrib/distributions/python/ops/bijectors/affine_linear_operator.py:158: _DistributionShape.__init__ (from tensorflow.contrib.distributions.python.ops.shape) is deprecated and will be removed after 2018-10-01.
+Instructions for updating:
+The TensorFlow Distributions library has moved to TensorFlow Probability (https://github.com/tensorflow/probability). You should update all references to use `tfp.distributions` instead of `tf.contrib.distributions`.
+Network: policy, Copies: 1 (online network)
+-------------------------------------------
+Input Embedder: FRONT_FACING_CAMERA
+	Input size = [120, 160, 1]
+	Input Normalization (scale = 255.0, offset = 0.0)
+	Convolution (num filters = 32, kernel size = 8, stride = 4)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+	Convolution (num filters = 64, kernel size = 4, stride = 2)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+	Convolution (num filters = 64, kernel size = 3, stride = 1)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+Middleware:
+	Dense (num outputs = 512)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+Output Head: sac_policy_head
+	policy head:		Dense (num outputs = 256)
+			Dense (num outputs = 256)
+			Dense (num outputs = [4])
+	policy_mu = output[:num_actions], policy_std = output[num_actions:]
+Network: q, Copies: 1 (online network)
+--------------------------------------
+Input Embedder: FRONT_FACING_CAMERA
+	Input size = [120, 160, 1]
+	Input Normalization (scale = 255.0, offset = 0.0)
+	Convolution (num filters = 32, kernel size = 8, stride = 4)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+	Convolution (num filters = 64, kernel size = 4, stride = 2)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+	Convolution (num filters = 64, kernel size = 3, stride = 1)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+Middleware:
+	No layers
+Output Head: q_values_head
+	q1 output		Dense (num outputs = 256)
+			Dense (num outputs = 256)
+			Dense (num outputs = 1)
+	q2 output		Dense (num outputs = 256)
+			Dense (num outputs = 256)
+			Dense (num outputs = 1)
+	min(Q1,Q2)
+Network: v, Copies: 2 (online network | target network)
+-------------------------------------------------------
+Input Embedder: FRONT_FACING_CAMERA
+	Input size = [120, 160, 1]
+	Input Normalization (scale = 255.0, offset = 0.0)
+	Convolution (num filters = 32, kernel size = 8, stride = 4)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+	Convolution (num filters = 64, kernel size = 4, stride = 2)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+	Convolution (num filters = 64, kernel size = 3, stride = 1)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+Middleware:
+	Dense (num outputs = 512)
+	Activation (type = <function relu at 0x7f7f21e9c488>)
+Output Head: v_values_head
+	Dense (num outputs = 1)
+## Stop physics after creating graph
+## Creating session
+2021-07-19 10:45:54.675746: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+INFO:tensorflow:./checkpoint_sagemaker/agent/0_Step-0.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/0_Step-0.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 0
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+Unable to find deepracer checkpoint json
+Unable to find the best deepracer checkpoint number. Getting the last checkpoint number
+Unable to find deepracer checkpoint json
+Unable to find the last deepracer checkpoint number.
+Unable to find deepracer checkpoint json
+Unable to find the last deepracer checkpoint number.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_0.pb
+Best checkpoint number: -1, Last checkpoint number: -1
+Copying the frozen checkpoint from ./frozen_models/agent/model_0.pb to /opt/ml/model/agent/model.pb.
+Unable to find deepracer checkpoint json
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+[s3] Successfully uploaded .ready to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.ready.
+DoorMan: installing SIGINT, SIGTERM
+Training> Name=main_level/agent, Worker=0, Episode=1, Total reward=0, Steps=31, Training iteration=0
+INFO:tensorflow:./checkpoint_sagemaker/agent/1_Step-31.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/1_Step-31.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 1
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_1.pb
+Best checkpoint number: 0, Last checkpoint number: 0
+Copying the frozen checkpoint from ./frozen_models/agent/model_0.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Training> Name=main_level/agent, Worker=0, Episode=2, Total reward=0, Steps=48, Training iteration=31
+INFO:tensorflow:./checkpoint_sagemaker/agent/2_Step-48.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/2_Step-48.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 2
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_2.pb
+Best checkpoint number: 0, Last checkpoint number: 0
+Copying the frozen checkpoint from ./frozen_models/agent/model_0.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Training> Name=main_level/agent, Worker=0, Episode=3, Total reward=0, Steps=72, Training iteration=48
+INFO:tensorflow:./checkpoint_sagemaker/agent/3_Step-72.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/3_Step-72.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 3
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_3.pb
+Best checkpoint number: 1, Last checkpoint number: 1
+Copying the frozen checkpoint from ./frozen_models/agent/model_1.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Training> Name=main_level/agent, Worker=0, Episode=4, Total reward=0, Steps=102, Training iteration=72
+INFO:tensorflow:./checkpoint_sagemaker/agent/4_Step-102.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/4_Step-102.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 4
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_4.pb
+Best checkpoint number: 2, Last checkpoint number: 2
+Copying the frozen checkpoint from ./frozen_models/agent/model_2.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'0'}
+Training> Name=main_level/agent, Worker=0, Episode=5, Total reward=0, Steps=125, Training iteration=102
+INFO:tensorflow:./checkpoint_sagemaker/agent/5_Step-125.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/5_Step-125.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 5
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_5.pb
+Best checkpoint number: 2, Last checkpoint number: 3
+Copying the frozen checkpoint from ./frozen_models/agent/model_2.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'1'}
+Training> Name=main_level/agent, Worker=0, Episode=6, Total reward=0, Steps=146, Training iteration=125
+INFO:tensorflow:./checkpoint_sagemaker/agent/6_Step-146.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/6_Step-146.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 6
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_6.pb
+Best checkpoint number: 2, Last checkpoint number: 4
+Copying the frozen checkpoint from ./frozen_models/agent/model_2.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'3'}
+Training> Name=main_level/agent, Worker=0, Episode=7, Total reward=0, Steps=167, Training iteration=146
+INFO:tensorflow:./checkpoint_sagemaker/agent/7_Step-167.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/7_Step-167.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 7
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_7.pb
+Best checkpoint number: 2, Last checkpoint number: 5
+Copying the frozen checkpoint from ./frozen_models/agent/model_2.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'4'}
+Training> Name=main_level/agent, Worker=0, Episode=8, Total reward=0, Steps=191, Training iteration=167
+INFO:tensorflow:./checkpoint_sagemaker/agent/8_Step-191.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/8_Step-191.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 8
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_8.pb
+Best checkpoint number: 2, Last checkpoint number: 6
+Copying the frozen checkpoint from ./frozen_models/agent/model_2.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'5'}
+Training> Name=main_level/agent, Worker=0, Episode=9, Total reward=0, Steps=218, Training iteration=191
+INFO:tensorflow:./checkpoint_sagemaker/agent/9_Step-218.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/9_Step-218.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 9
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_9.pb
+Best checkpoint number: 2, Last checkpoint number: 7
+Copying the frozen checkpoint from ./frozen_models/agent/model_2.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'6'}
+Training> Name=main_level/agent, Worker=0, Episode=10, Total reward=0, Steps=250, Training iteration=218
+INFO:tensorflow:./checkpoint_sagemaker/agent/10_Step-250.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/10_Step-250.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 10
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_10.pb
+Best checkpoint number: 2, Last checkpoint number: 8
+Copying the frozen checkpoint from ./frozen_models/agent/model_2.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'7'}
+Training> Name=main_level/agent, Worker=0, Episode=11, Total reward=0, Steps=275, Training iteration=250
+INFO:tensorflow:./checkpoint_sagemaker/agent/11_Step-275.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/11_Step-275.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 11
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_11.pb
+Best checkpoint number: 2, Last checkpoint number: 9
+Copying the frozen checkpoint from ./frozen_models/agent/model_2.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'8'}
+Training> Name=main_level/agent, Worker=0, Episode=12, Total reward=0, Steps=297, Training iteration=275
+INFO:tensorflow:./checkpoint_sagemaker/agent/12_Step-297.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/12_Step-297.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 12
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_12.pb
+Best checkpoint number: 10, Last checkpoint number: 10
+Copying the frozen checkpoint from ./frozen_models/agent/model_10.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'9'}
+Training> Name=main_level/agent, Worker=0, Episode=13, Total reward=0, Steps=321, Training iteration=297
+INFO:tensorflow:./checkpoint_sagemaker/agent/13_Step-321.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/13_Step-321.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 13
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_13.pb
+Best checkpoint number: 10, Last checkpoint number: 11
+Copying the frozen checkpoint from ./frozen_models/agent/model_10.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'2'}
+Training> Name=main_level/agent, Worker=0, Episode=14, Total reward=0, Steps=341, Training iteration=321
+INFO:tensorflow:./checkpoint_sagemaker/agent/14_Step-341.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/14_Step-341.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 14
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_14.pb
+Best checkpoint number: 10, Last checkpoint number: 12
+Copying the frozen checkpoint from ./frozen_models/agent/model_10.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'11'}
+Training> Name=main_level/agent, Worker=0, Episode=15, Total reward=0, Steps=362, Training iteration=341
+INFO:tensorflow:./checkpoint_sagemaker/agent/15_Step-362.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/15_Step-362.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 15
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_15.pb
+Best checkpoint number: 10, Last checkpoint number: 13
+Copying the frozen checkpoint from ./frozen_models/agent/model_10.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'12'}
+Training> Name=main_level/agent, Worker=0, Episode=16, Total reward=0, Steps=406, Training iteration=362
+INFO:tensorflow:./checkpoint_sagemaker/agent/16_Step-406.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/16_Step-406.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 16
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_16.pb
+Best checkpoint number: 10, Last checkpoint number: 14
+Copying the frozen checkpoint from ./frozen_models/agent/model_10.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'13'}
+Training> Name=main_level/agent, Worker=0, Episode=17, Total reward=0, Steps=441, Training iteration=406
+INFO:tensorflow:./checkpoint_sagemaker/agent/17_Step-441.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/17_Step-441.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 17
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_17.pb
+Best checkpoint number: 15, Last checkpoint number: 15
+Copying the frozen checkpoint from ./frozen_models/agent/model_15.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'10'}
+Training> Name=main_level/agent, Worker=0, Episode=18, Total reward=0, Steps=464, Training iteration=441
+INFO:tensorflow:./checkpoint_sagemaker/agent/18_Step-464.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/18_Step-464.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 18
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_18.pb
+Best checkpoint number: 15, Last checkpoint number: 16
+Copying the frozen checkpoint from ./frozen_models/agent/model_15.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'14'}
+Training> Name=main_level/agent, Worker=0, Episode=19, Total reward=0, Steps=505, Training iteration=464
+INFO:tensorflow:./checkpoint_sagemaker/agent/19_Step-505.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/19_Step-505.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 19
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_19.pb
+Best checkpoint number: 15, Last checkpoint number: 17
+Copying the frozen checkpoint from ./frozen_models/agent/model_15.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'16'}
+Training> Name=main_level/agent, Worker=0, Episode=20, Total reward=0, Steps=543, Training iteration=505
+INFO:tensorflow:./checkpoint_sagemaker/agent/20_Step-543.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/20_Step-543.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 20
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_20.pb
+Best checkpoint number: 15, Last checkpoint number: 18
+Copying the frozen checkpoint from ./frozen_models/agent/model_15.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'17'}
+Training> Name=main_level/agent, Worker=0, Episode=21, Total reward=0, Steps=582, Training iteration=543
+INFO:tensorflow:./checkpoint_sagemaker/agent/21_Step-582.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/21_Step-582.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 21
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_21.pb
+Best checkpoint number: 19, Last checkpoint number: 19
+Copying the frozen checkpoint from ./frozen_models/agent/model_19.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'18'}
+Training> Name=main_level/agent, Worker=0, Episode=22, Total reward=0, Steps=607, Training iteration=582
+INFO:tensorflow:./checkpoint_sagemaker/agent/22_Step-607.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/22_Step-607.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 22
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_22.pb
+Best checkpoint number: 19, Last checkpoint number: 20
+Copying the frozen checkpoint from ./frozen_models/agent/model_19.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'15'}
+Training> Name=main_level/agent, Worker=0, Episode=23, Total reward=0, Steps=630, Training iteration=607
+INFO:tensorflow:./checkpoint_sagemaker/agent/23_Step-630.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/23_Step-630.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 23
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_23.pb
+Best checkpoint number: 21, Last checkpoint number: 21
+Copying the frozen checkpoint from ./frozen_models/agent/model_21.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'20'}
+Training> Name=main_level/agent, Worker=0, Episode=24, Total reward=0, Steps=674, Training iteration=630
+INFO:tensorflow:./checkpoint_sagemaker/agent/24_Step-674.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/24_Step-674.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 24
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_24.pb
+Best checkpoint number: 21, Last checkpoint number: 22
+Copying the frozen checkpoint from ./frozen_models/agent/model_21.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'22'}
+Training> Name=main_level/agent, Worker=0, Episode=25, Total reward=0, Steps=703, Training iteration=674
+INFO:tensorflow:./checkpoint_sagemaker/agent/25_Step-703.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/25_Step-703.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 25
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_25.pb
+Best checkpoint number: 23, Last checkpoint number: 23
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'19'}
+Training> Name=main_level/agent, Worker=0, Episode=26, Total reward=0, Steps=725, Training iteration=703
+INFO:tensorflow:./checkpoint_sagemaker/agent/26_Step-725.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/26_Step-725.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 26
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_26.pb
+Best checkpoint number: 23, Last checkpoint number: 24
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'24'}
+Training> Name=main_level/agent, Worker=0, Episode=27, Total reward=0, Steps=861, Training iteration=725
+INFO:tensorflow:./checkpoint_sagemaker/agent/27_Step-861.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/27_Step-861.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 27
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_27.pb
+Best checkpoint number: 23, Last checkpoint number: 25
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'21'}
+Training> Name=main_level/agent, Worker=0, Episode=28, Total reward=0, Steps=1077, Training iteration=861
+INFO:tensorflow:./checkpoint_sagemaker/agent/28_Step-1077.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/28_Step-1077.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 28
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_28.pb
+Best checkpoint number: 23, Last checkpoint number: 26
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'25'}
+Training> Name=main_level/agent, Worker=0, Episode=29, Total reward=0, Steps=1118, Training iteration=1077
+INFO:tensorflow:./checkpoint_sagemaker/agent/29_Step-1118.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/29_Step-1118.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 29
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_29.pb
+Best checkpoint number: 23, Last checkpoint number: 27
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'26'}
+Training> Name=main_level/agent, Worker=0, Episode=30, Total reward=0, Steps=1196, Training iteration=1118
+INFO:tensorflow:./checkpoint_sagemaker/agent/30_Step-1196.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/30_Step-1196.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 30
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_30.pb
+Best checkpoint number: 23, Last checkpoint number: 28
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'27'}
+Training> Name=main_level/agent, Worker=0, Episode=31, Total reward=0, Steps=1246, Training iteration=1196
+INFO:tensorflow:./checkpoint_sagemaker/agent/31_Step-1246.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/31_Step-1246.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 31
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_31.pb
+Best checkpoint number: 23, Last checkpoint number: 29
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'28'}
+Training> Name=main_level/agent, Worker=0, Episode=32, Total reward=0, Steps=1270, Training iteration=1246
+INFO:tensorflow:./checkpoint_sagemaker/agent/32_Step-1270.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/32_Step-1270.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 32
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_32.pb
+Best checkpoint number: 23, Last checkpoint number: 30
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'29'}
+Training> Name=main_level/agent, Worker=0, Episode=33, Total reward=0, Steps=1328, Training iteration=1270
+INFO:tensorflow:./checkpoint_sagemaker/agent/33_Step-1328.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/33_Step-1328.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 33
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_33.pb
+Best checkpoint number: 23, Last checkpoint number: 31
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'30'}
+Training> Name=main_level/agent, Worker=0, Episode=34, Total reward=0, Steps=1347, Training iteration=1328
+INFO:tensorflow:./checkpoint_sagemaker/agent/34_Step-1347.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/34_Step-1347.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 34
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_34.pb
+Best checkpoint number: 23, Last checkpoint number: 32
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'31'}
+Training> Name=main_level/agent, Worker=0, Episode=35, Total reward=0, Steps=1372, Training iteration=1347
+INFO:tensorflow:./checkpoint_sagemaker/agent/35_Step-1372.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/35_Step-1372.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 35
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_35.pb
+Best checkpoint number: 23, Last checkpoint number: 33
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'32'}
+Training> Name=main_level/agent, Worker=0, Episode=36, Total reward=0, Steps=1398, Training iteration=1372
+INFO:tensorflow:./checkpoint_sagemaker/agent/36_Step-1398.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/36_Step-1398.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 36
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_36.pb
+Best checkpoint number: 23, Last checkpoint number: 34
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'33'}
+Training> Name=main_level/agent, Worker=0, Episode=37, Total reward=0, Steps=1431, Training iteration=1398
+INFO:tensorflow:./checkpoint_sagemaker/agent/37_Step-1431.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/37_Step-1431.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 37
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_37.pb
+Best checkpoint number: 23, Last checkpoint number: 35
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'34'}
+Training> Name=main_level/agent, Worker=0, Episode=38, Total reward=0, Steps=1520, Training iteration=1431
+INFO:tensorflow:./checkpoint_sagemaker/agent/38_Step-1520.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/38_Step-1520.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 38
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_38.pb
+Best checkpoint number: 23, Last checkpoint number: 36
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'35'}
+Training> Name=main_level/agent, Worker=0, Episode=39, Total reward=0, Steps=1556, Training iteration=1520
+INFO:tensorflow:./checkpoint_sagemaker/agent/39_Step-1556.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/39_Step-1556.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 39
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_39.pb
+Best checkpoint number: 23, Last checkpoint number: 37
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'36'}
+Training> Name=main_level/agent, Worker=0, Episode=40, Total reward=0, Steps=1577, Training iteration=1556
+INFO:tensorflow:./checkpoint_sagemaker/agent/40_Step-1577.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/40_Step-1577.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 40
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_40.pb
+Best checkpoint number: 23, Last checkpoint number: 38
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'37'}
+Training> Name=main_level/agent, Worker=0, Episode=41, Total reward=0, Steps=1650, Training iteration=1577
+INFO:tensorflow:./checkpoint_sagemaker/agent/41_Step-1650.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/41_Step-1650.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 41
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_41.pb
+Best checkpoint number: 23, Last checkpoint number: 39
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'38'}
+Training> Name=main_level/agent, Worker=0, Episode=42, Total reward=0, Steps=1681, Training iteration=1650
+INFO:tensorflow:./checkpoint_sagemaker/agent/42_Step-1681.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/42_Step-1681.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 42
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_42.pb
+Best checkpoint number: 23, Last checkpoint number: 40
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'39'}
+Training> Name=main_level/agent, Worker=0, Episode=43, Total reward=0, Steps=1708, Training iteration=1681
+INFO:tensorflow:./checkpoint_sagemaker/agent/43_Step-1708.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/43_Step-1708.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 43
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_43.pb
+Best checkpoint number: 23, Last checkpoint number: 41
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'40'}
+Training> Name=main_level/agent, Worker=0, Episode=44, Total reward=0, Steps=1751, Training iteration=1708
+INFO:tensorflow:./checkpoint_sagemaker/agent/44_Step-1751.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/44_Step-1751.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 44
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_44.pb
+Best checkpoint number: 23, Last checkpoint number: 42
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'41'}
+Training> Name=main_level/agent, Worker=0, Episode=45, Total reward=0, Steps=1774, Training iteration=1751
+INFO:tensorflow:./checkpoint_sagemaker/agent/45_Step-1774.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/45_Step-1774.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 45
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_45.pb
+Best checkpoint number: 23, Last checkpoint number: 43
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'42'}
+Training> Name=main_level/agent, Worker=0, Episode=46, Total reward=0, Steps=1797, Training iteration=1774
+INFO:tensorflow:./checkpoint_sagemaker/agent/46_Step-1797.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/46_Step-1797.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 46
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_46.pb
+Best checkpoint number: 23, Last checkpoint number: 44
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'43'}
+Training> Name=main_level/agent, Worker=0, Episode=47, Total reward=0, Steps=1896, Training iteration=1797
+INFO:tensorflow:./checkpoint_sagemaker/agent/47_Step-1896.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/47_Step-1896.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 47
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_47.pb
+Best checkpoint number: 23, Last checkpoint number: 45
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'44'}
+Training> Name=main_level/agent, Worker=0, Episode=48, Total reward=0, Steps=1950, Training iteration=1896
+INFO:tensorflow:./checkpoint_sagemaker/agent/48_Step-1950.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/48_Step-1950.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 48
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_48.pb
+Best checkpoint number: 23, Last checkpoint number: 46
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'45'}
+Training> Name=main_level/agent, Worker=0, Episode=49, Total reward=0, Steps=2038, Training iteration=1950
+INFO:tensorflow:./checkpoint_sagemaker/agent/49_Step-2038.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/49_Step-2038.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 49
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_49.pb
+Best checkpoint number: 23, Last checkpoint number: 47
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'46'}
+Training> Name=main_level/agent, Worker=0, Episode=50, Total reward=0, Steps=2097, Training iteration=2038
+INFO:tensorflow:./checkpoint_sagemaker/agent/50_Step-2097.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/50_Step-2097.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 50
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_50.pb
+Best checkpoint number: 23, Last checkpoint number: 48
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'47'}
+Training> Name=main_level/agent, Worker=0, Episode=51, Total reward=0, Steps=2146, Training iteration=2097
+INFO:tensorflow:./checkpoint_sagemaker/agent/51_Step-2146.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/51_Step-2146.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 51
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_51.pb
+Best checkpoint number: 23, Last checkpoint number: 49
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'48'}
+Training> Name=main_level/agent, Worker=0, Episode=52, Total reward=0, Steps=2170, Training iteration=2146
+INFO:tensorflow:./checkpoint_sagemaker/agent/52_Step-2170.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/52_Step-2170.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 52
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_52.pb
+Best checkpoint number: 23, Last checkpoint number: 50
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'49'}
+Training> Name=main_level/agent, Worker=0, Episode=53, Total reward=0, Steps=2255, Training iteration=2170
+INFO:tensorflow:./checkpoint_sagemaker/agent/53_Step-2255.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/53_Step-2255.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 53
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_53.pb
+Best checkpoint number: 23, Last checkpoint number: 51
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'50'}
+Training> Name=main_level/agent, Worker=0, Episode=54, Total reward=0, Steps=2365, Training iteration=2255
+INFO:tensorflow:./checkpoint_sagemaker/agent/54_Step-2365.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/54_Step-2365.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 54
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_54.pb
+Best checkpoint number: 23, Last checkpoint number: 52
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'51'}
+Training> Name=main_level/agent, Worker=0, Episode=55, Total reward=0, Steps=2443, Training iteration=2365
+INFO:tensorflow:./checkpoint_sagemaker/agent/55_Step-2443.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/55_Step-2443.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 55
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_55.pb
+Best checkpoint number: 23, Last checkpoint number: 53
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'52'}
+Training> Name=main_level/agent, Worker=0, Episode=56, Total reward=0, Steps=2545, Training iteration=2443
+INFO:tensorflow:./checkpoint_sagemaker/agent/56_Step-2545.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/56_Step-2545.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 56
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_56.pb
+Best checkpoint number: 23, Last checkpoint number: 54
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'53'}
+Training> Name=main_level/agent, Worker=0, Episode=57, Total reward=0, Steps=2585, Training iteration=2545
+INFO:tensorflow:./checkpoint_sagemaker/agent/57_Step-2585.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/57_Step-2585.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 57
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_57.pb
+Best checkpoint number: 23, Last checkpoint number: 55
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'54'}
+Training> Name=main_level/agent, Worker=0, Episode=58, Total reward=0, Steps=2631, Training iteration=2585
+INFO:tensorflow:./checkpoint_sagemaker/agent/58_Step-2631.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/58_Step-2631.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 58
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_58.pb
+Best checkpoint number: 23, Last checkpoint number: 56
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'55'}
+Training> Name=main_level/agent, Worker=0, Episode=59, Total reward=0, Steps=2656, Training iteration=2631
+INFO:tensorflow:./checkpoint_sagemaker/agent/59_Step-2656.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/59_Step-2656.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 59
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_59.pb
+Best checkpoint number: 23, Last checkpoint number: 57
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'56'}
+Training> Name=main_level/agent, Worker=0, Episode=60, Total reward=0, Steps=2677, Training iteration=2656
+INFO:tensorflow:./checkpoint_sagemaker/agent/60_Step-2677.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/60_Step-2677.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 60
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_60.pb
+Best checkpoint number: 23, Last checkpoint number: 58
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'57'}
+Training> Name=main_level/agent, Worker=0, Episode=61, Total reward=0, Steps=2735, Training iteration=2677
+INFO:tensorflow:./checkpoint_sagemaker/agent/61_Step-2735.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/61_Step-2735.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 61
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_61.pb
+Best checkpoint number: 23, Last checkpoint number: 59
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'58'}
+Training> Name=main_level/agent, Worker=0, Episode=62, Total reward=0, Steps=2757, Training iteration=2735
+INFO:tensorflow:./checkpoint_sagemaker/agent/62_Step-2757.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/62_Step-2757.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 62
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_62.pb
+Best checkpoint number: 23, Last checkpoint number: 60
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'59'}
+Training> Name=main_level/agent, Worker=0, Episode=63, Total reward=0, Steps=2793, Training iteration=2757
+INFO:tensorflow:./checkpoint_sagemaker/agent/63_Step-2793.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/63_Step-2793.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 63
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_63.pb
+Best checkpoint number: 23, Last checkpoint number: 61
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'60'}
+Training> Name=main_level/agent, Worker=0, Episode=64, Total reward=0, Steps=2832, Training iteration=2793
+INFO:tensorflow:./checkpoint_sagemaker/agent/64_Step-2832.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/64_Step-2832.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 64
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_64.pb
+Best checkpoint number: 23, Last checkpoint number: 62
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'61'}
+Training> Name=main_level/agent, Worker=0, Episode=65, Total reward=0, Steps=2850, Training iteration=2832
+INFO:tensorflow:./checkpoint_sagemaker/agent/65_Step-2850.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/65_Step-2850.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 65
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_65.pb
+Best checkpoint number: 23, Last checkpoint number: 63
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'62'}
+Training> Name=main_level/agent, Worker=0, Episode=66, Total reward=0, Steps=2933, Training iteration=2850
+INFO:tensorflow:./checkpoint_sagemaker/agent/66_Step-2933.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/66_Step-2933.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 66
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_66.pb
+Best checkpoint number: 23, Last checkpoint number: 64
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'63'}
+Training> Name=main_level/agent, Worker=0, Episode=67, Total reward=0, Steps=3060, Training iteration=2933
+INFO:tensorflow:./checkpoint_sagemaker/agent/67_Step-3060.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/67_Step-3060.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 67
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_67.pb
+Best checkpoint number: 23, Last checkpoint number: 65
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'64'}
+Training> Name=main_level/agent, Worker=0, Episode=68, Total reward=0, Steps=3185, Training iteration=3060
+INFO:tensorflow:./checkpoint_sagemaker/agent/68_Step-3185.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/68_Step-3185.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 68
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_68.pb
+Best checkpoint number: 23, Last checkpoint number: 66
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'65'}
+Training> Name=main_level/agent, Worker=0, Episode=69, Total reward=0, Steps=3250, Training iteration=3185
+INFO:tensorflow:./checkpoint_sagemaker/agent/69_Step-3250.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/69_Step-3250.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 69
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_69.pb
+Best checkpoint number: 23, Last checkpoint number: 67
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'66'}
+Training> Name=main_level/agent, Worker=0, Episode=70, Total reward=0, Steps=3307, Training iteration=3250
+INFO:tensorflow:./checkpoint_sagemaker/agent/70_Step-3307.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/70_Step-3307.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 70
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_70.pb
+Best checkpoint number: 23, Last checkpoint number: 68
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'67'}
+Training> Name=main_level/agent, Worker=0, Episode=71, Total reward=0, Steps=3354, Training iteration=3307
+INFO:tensorflow:./checkpoint_sagemaker/agent/71_Step-3354.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/71_Step-3354.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 71
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_71.pb
+Best checkpoint number: 23, Last checkpoint number: 69
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'68'}
+Training> Name=main_level/agent, Worker=0, Episode=72, Total reward=0, Steps=3379, Training iteration=3354
+INFO:tensorflow:./checkpoint_sagemaker/agent/72_Step-3379.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/72_Step-3379.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 72
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_72.pb
+Best checkpoint number: 23, Last checkpoint number: 70
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'69'}
+Training> Name=main_level/agent, Worker=0, Episode=73, Total reward=0, Steps=3473, Training iteration=3379
+INFO:tensorflow:./checkpoint_sagemaker/agent/73_Step-3473.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/73_Step-3473.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 73
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_73.pb
+Best checkpoint number: 23, Last checkpoint number: 71
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'70'}
+Training> Name=main_level/agent, Worker=0, Episode=74, Total reward=0, Steps=3583, Training iteration=3473
+INFO:tensorflow:./checkpoint_sagemaker/agent/74_Step-3583.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/74_Step-3583.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 74
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_74.pb
+Best checkpoint number: 23, Last checkpoint number: 72
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'71'}
+Training> Name=main_level/agent, Worker=0, Episode=75, Total reward=0, Steps=3638, Training iteration=3583
+INFO:tensorflow:./checkpoint_sagemaker/agent/75_Step-3638.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/75_Step-3638.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 75
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_75.pb
+Best checkpoint number: 23, Last checkpoint number: 73
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'72'}
+Training> Name=main_level/agent, Worker=0, Episode=76, Total reward=0, Steps=3683, Training iteration=3638
+INFO:tensorflow:./checkpoint_sagemaker/agent/76_Step-3683.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/76_Step-3683.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 76
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_76.pb
+Best checkpoint number: 23, Last checkpoint number: 74
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'73'}
+Training> Name=main_level/agent, Worker=0, Episode=77, Total reward=0, Steps=3715, Training iteration=3683
+INFO:tensorflow:./checkpoint_sagemaker/agent/77_Step-3715.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/77_Step-3715.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 77
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_77.pb
+Best checkpoint number: 23, Last checkpoint number: 75
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'74'}
+Training> Name=main_level/agent, Worker=0, Episode=78, Total reward=0, Steps=3805, Training iteration=3715
+INFO:tensorflow:./checkpoint_sagemaker/agent/78_Step-3805.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/78_Step-3805.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 78
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_78.pb
+Best checkpoint number: 23, Last checkpoint number: 76
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'75'}
+Training> Name=main_level/agent, Worker=0, Episode=79, Total reward=0, Steps=3830, Training iteration=3805
+INFO:tensorflow:./checkpoint_sagemaker/agent/79_Step-3830.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/79_Step-3830.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 79
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_79.pb
+Best checkpoint number: 23, Last checkpoint number: 77
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'76'}
+Training> Name=main_level/agent, Worker=0, Episode=80, Total reward=0, Steps=3859, Training iteration=3830
+INFO:tensorflow:./checkpoint_sagemaker/agent/80_Step-3859.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/80_Step-3859.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 80
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_80.pb
+Best checkpoint number: 23, Last checkpoint number: 78
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'77'}
+Training> Name=main_level/agent, Worker=0, Episode=81, Total reward=0, Steps=4012, Training iteration=3859
+INFO:tensorflow:./checkpoint_sagemaker/agent/81_Step-4012.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/81_Step-4012.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 81
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_81.pb
+Best checkpoint number: 23, Last checkpoint number: 79
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'78'}
+Training> Name=main_level/agent, Worker=0, Episode=82, Total reward=0, Steps=4033, Training iteration=4012
+INFO:tensorflow:./checkpoint_sagemaker/agent/82_Step-4033.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/82_Step-4033.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 82
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_82.pb
+Best checkpoint number: 23, Last checkpoint number: 80
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'79'}
+Training> Name=main_level/agent, Worker=0, Episode=83, Total reward=0, Steps=4074, Training iteration=4033
+INFO:tensorflow:./checkpoint_sagemaker/agent/83_Step-4074.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/83_Step-4074.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 83
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_83.pb
+Best checkpoint number: 23, Last checkpoint number: 81
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'80'}
+Training> Name=main_level/agent, Worker=0, Episode=84, Total reward=0, Steps=4112, Training iteration=4074
+INFO:tensorflow:./checkpoint_sagemaker/agent/84_Step-4112.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/84_Step-4112.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 84
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_84.pb
+Best checkpoint number: 23, Last checkpoint number: 82
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'81'}
+Training> Name=main_level/agent, Worker=0, Episode=85, Total reward=0, Steps=4144, Training iteration=4112
+INFO:tensorflow:./checkpoint_sagemaker/agent/85_Step-4144.ckpt is not in all_model_checkpoint_paths. Manually adding it.
+Checkpoint> Saving in path=['./checkpoint_sagemaker/agent/85_Step-4144.ckpt']
+[s3] Successfully uploaded .lock to                      s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.lock.
+Uploaded 3 files for checkpoint 85
+[s3] Successfully uploaded coach checkpoint to                   s3 bucket aws-deepracer-data-us-east-1-1 with s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/.coach_checkpoint.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+INFO:tensorflow:Froze 13 variables.
+INFO:tensorflow:Converted 13 variables to const ops.
+saved intermediate frozen graph: data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/model_85.pb
+Best checkpoint number: 23, Last checkpoint number: 83
+Copying the frozen checkpoint from ./frozen_models/agent/model_23.pb to /opt/ml/model/agent/model.pb.
+[s3] Successfully downloaded deepracer checkpoint json from                  s3 key data-ff2e777d-39c8-461e-b9b6-03c4737fbd6e/models/FlashDrive-Steven-32/sagemaker-robomaker-artifacts/model/deepracer_checkpoints.json to local checkpoint_sagemaker/agent/deepracer_checkpoints.json.
+Deleting the frozen models in s3 for the iterations: {'82'}
+Training> Name=main_level/agent, Worker=0, Episode=86, Total reward=0, Steps=4249, Training iteration=4144
